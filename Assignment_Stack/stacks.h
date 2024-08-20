@@ -1,18 +1,30 @@
-
-#ifndef ASSIGNMENT_STACKS_STACK_H
-#define ASSIGNMENT_STACKS_STACK_H
+// Copyright 2024 Cleber Souza
+#ifndef STACKS_H
+#define STACKS_H
 
 #include <stdbool.h>
-
+#include <string.h>
 // Constantes
-enum { TAMANHO = 5 };
+enum { TAMANHO = 20, TAMANHO_STRING = 2 };
 
 // Variáveis
-extern int pilha[TAMANHO];
-extern int posicao;
+extern char pl_pilha_string[TAMANHO][TAMANHO_STRING];
+extern double pl_pilha_double[TAMANHO];
+extern int pl_posicao_string;
+extern int pl_posicao_double;
 
 // Protótipos
-bool push(int dado);
-bool pop(int *dado);
+bool push_string(char *valor);
+bool pop_string(char *valor);
+bool estaCheia_string();
+bool estaVazia_string();
+void imprimir_string();
+bool push_double(double valor);
+bool pop_double(double *valor);
+bool estaCheia_double();
+bool estaVazia_double();
+void imprimir_double();
+char pilhatopo_string();
+double pilhatopo_double();
 
-#endif  // ASSIGNMENT_STACKS_STACK_H
+#endif  // STACKS_H
