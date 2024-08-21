@@ -5,6 +5,7 @@
 
 #include "stacks.h"
 
+// Copyright 2024 Marcos Nava
 bool find(char letra, char *str) {
   for (int i = 0; i < strlen(str); i++) {
     if (str[i] == letra) {
@@ -13,6 +14,8 @@ bool find(char letra, char *str) {
   }
   return false;
 }
+
+// Copyright 2024 Marcos Nava
 void stringParaVetor(char *line, char vec[][20], int tamanho) {
   char trab[tamanho];
   char operacoes[] = "+-*/()";
@@ -89,11 +92,14 @@ bool precedencia(char op1) {
 }
 
 /** @Function matemagica
+ * Copyright 2024 Gabriel Coelho Soares e Marcos Moreira Martins
  * @params vector[][20] : char
  * @usage ao chamar passando o vetor da função completa, a matemagica realiza um
  * laço de repetição até que a primeira coluna de uma linha seja igual ao
  * término/quebra de linha (fim do vetor). Enquanto isso não acontece, vou
- * realizando as verificações.
+ * realizando as verificações; ao fim, vou limpando (pop) a pilha de operadores
+ * até que não tenha mais nada nela, afim de executar, corretamente, todas as
+ * operações.
  * */
 void matemagica(char vector[][20]) {
   double numero;
