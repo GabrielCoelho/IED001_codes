@@ -19,3 +19,9 @@ ou - será menor precedência
 capaz de ver o elemento no seu topo sem retirá-lo.
 - Também será necessário criar uma função que determina se as
 pilhas estão vazias.
+
+## Reutilização e autoria do Código
+
+- Foi reaproveitado, além do código disponibilizado pelo professor Marcos Nava, o arquivo de pilha e a função `bool precedencia()` do Cleber Souza @SouzaCleber98
+- O Código foi executado e testado diversas vezes pelos participantes do projeto: @GabrielCoelho e @hmindiano estando pronto para a entrega desde o dia 2024-08-21 às 10:15:48
+- Todos os códigos estão identificados com os respectivos criadores, resepeitando a propriedade intelectual.
