@@ -11,7 +11,7 @@ int main() {
   char exp[100] = "";
   char vec[100][20] = {'\0'};
 
-  strcpy(exp, "(((35 / 5) + (4 * 2)) * 5) / (3 * 5)");
+  strcpy(exp, "((22+5)*2)/(3*1)");
 
   stringParaVetor(exp, vec, TAMANHO);
 
