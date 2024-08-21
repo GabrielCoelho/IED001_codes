@@ -10,7 +10,7 @@ int main() {
   char exp[100] = "";
   char vec[100][20] = {'\0'};
 
-  strcpy(exp, "(((22+3)/5)*4)-7");
+  strcpy(exp, "(((35/5)+8)*5)/2");
 
   stringParaVetor(exp, vec, TAMANHO);
 
