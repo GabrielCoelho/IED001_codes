@@ -22,6 +22,6 @@ pilhas estão vazias.
 
 ## Reutilização e autoria do Código
 
-- Foi reaproveitado, além do código disponibilizado pelo professor Marcos Nava, o arquivo de pilha e a função `bool precedencia()` do Cleber Souza @SouzaCleber98
-- O Código foi executado e testado diversas vezes pelos participantes do projeto: @GabrielCoelho e @hmindiano estando pronto para a entrega desde o dia 2024-08-21 às 10:15:48
+- Foi reaproveitado, além do código disponibilizado pelo professor Marcos Nava, o arquivo de pilha e a função `bool precedencia()` do [Cleber Souza](https://github.com/SouzaCleber98)
+- O Código foi executado e testado diversas vezes pelos participantes do projeto: [Gabriel Coelho Soares](https://github.com/GabrielCoelho) e [Marcos Moreira Martins](https://github.com/hmindiano) estando pronto para a entrega desde o dia 2024-08-21 às 10:15:48
 - Todos os códigos estão identificados com os respectivos criadores, resepeitando a propriedade intelectual.
