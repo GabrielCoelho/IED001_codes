@@ -4,8 +4,15 @@
 
 #include <stdbool.h>
 
-enum { TAMANHO = 5 };
+enum { TAMANHO = 5, FIM_FILA = 5, INICIO_FILA = 0 };
+
+// Variáveis
+extern int vec_queue[TAMANHO];
+extern int queue_end;
+extern int queue_start;
 
 bool push_queue(int value);
+bool move_queue(int* value);
+void show_vec();
 
 #endif  // !QUEUEFN_H
