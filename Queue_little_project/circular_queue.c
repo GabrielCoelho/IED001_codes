@@ -11,9 +11,7 @@ int queue_start = INICIO_FILA;
 
 bool push_queue(int value) {
   if (!flag_queue[queue_end]) {
-    if (queue_end == queue_start) {
-      printf("Fila cheia\n");
-    }
+    printf("Fila cheia\n");
     return false;  // Fila cheia
   }
   printf("Inserindo o valor %d na fila\n", value);
@@ -27,20 +25,28 @@ bool push_queue(int value) {
 }
 
 bool move_queue(int* value) {
-  if (queue_start == queue_end || queue_start == FIM_FILA) {
+  if (flag_queue[queue_start]) {
+    printf("Fila vazia");
     return false;
-  } else {
-    printf("Retirando o valor %d da fila\n", vec_queue[queue_start]);
-    *value = vec_queue[queue_start];
-    queue_start++;
-    return true;
   }
+  printf("Retirando o valor %d da fila\n", vec_queue[queue_start]);
+  *value = vec_queue[queue_start];
+  if (queue_start == FIM_FILA) queue_start = INICIO_FILA;
+  if (queue_start == queue_end) flag_queue[queue_start] = VAZIA;
+  queue_start++;
+  return true;
 }
 
 void show_vec() {
-  if (!(queue_start == queue_end)) {
-    for (int i = queue_start; i < queue_end; i++) {
-      printf("Fila[%d] = %d\n", i + 1, vec_queue[i]);
+  if (!flag_queue[queue_start]) {
+    if (queue_start < queue_end) {
+      for (int i = queue_start; i < queue_end; i++) {
+        if (i == FIM_FILA) i = INICIO_FILA;
+        printf("Fila[%d] = %d\n", i + 1, vec_queue[i]);
+      }
+    } else {
+      // TODO(GabrielCoelho): create the print conditions if queue_start >
+      // queue_end or equal queue_end
     }
   } else {
     printf("Fila vazia");
