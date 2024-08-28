@@ -1,6 +1,6 @@
 // Copyright «2024» Gabriel Coelho Soares
-#ifndef QUEUEFN_H
-#define QUEUEFN_H
+#ifndef SIMPLE_QUEUE_H
+#define SIMPLE_QUEUE_H
 
 #include <stdbool.h>
 
@@ -15,4 +15,4 @@ bool push_queue(int value);
 bool move_queue(int* value);
 void show_vec();
 
-#endif  // !QUEUEFN_H
+#endif  // !SIMPLE_QUEUE_H

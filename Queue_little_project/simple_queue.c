@@ -1,5 +1,5 @@
 // Copyright «2024» Gabriel Coelho Soares
-#include "queuefn.h"
+#include "simple_queue.h"
 
 #include <stdio.h>
 

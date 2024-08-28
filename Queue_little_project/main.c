@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "queuefn.h"
+#include "simple_queue.h"
 
 int main(int argc, char *argv[]) {
   int vetor_exemplo[TAMANHO] = {5, 2, 3, 9, 4};
