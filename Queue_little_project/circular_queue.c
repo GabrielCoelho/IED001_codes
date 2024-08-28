@@ -38,6 +38,7 @@ bool move_queue(int* value) {
 }
 
 void show_vec() {
+  int round = false;
   if (!flag_queue[queue_start]) {
     if (queue_start < queue_end) {
       for (int i = queue_start; i < queue_end; i++) {
@@ -45,8 +46,14 @@ void show_vec() {
         printf("Fila[%d] = %d\n", i + 1, vec_queue[i]);
       }
     } else {
-      // TODO(GabrielCoelho): create the print conditions if queue_start >
-      // queue_end or equal queue_end
+      for (int i = queue_end; i <= FIM_FILA; i++) {
+        if (i == FIM_FILA && i != queue_end) {
+          i = 0;
+          round = true;
+        }
+        if (i == queue_end && round) break;
+        printf("Fila[%d] = %d\n", i + 1, vec_queue[i]);
+      }
     }
   } else {
     printf("Fila vazia");
