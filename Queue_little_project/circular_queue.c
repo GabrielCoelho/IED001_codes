@@ -31,9 +31,9 @@ bool move_queue(int* value) {
   }
   printf("Retirando o valor %d da fila\n", vec_queue[queue_start]);
   *value = vec_queue[queue_start];
-  if (queue_start == FIM_FILA) queue_start = INICIO_FILA;
   if (queue_start == queue_end) flag_queue[queue_start] = VAZIA;
   queue_start++;
+  if (queue_start == FIM_FILA) queue_start = INICIO_FILA;
   return true;
 }
 
