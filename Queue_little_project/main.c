@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "circular_queue.h"
 #include "simple_queue.h"
 
 int main(int argc, char *argv[]) {
