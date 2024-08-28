@@ -6,34 +6,58 @@
 #include "circular_queue.h"
 // #include "simple_queue.h"
 
-int main(int argc, char *argv[]) {
-  int vetor_exemplo[TAMANHO] = {5, 2, 3, 9, 4};
-  int retirado = 0;
-  // Mostra pilha vazia
-  show_vec();
-  // Início da inserção
-  if (!push_queue(5)) printf("");
-  if (!push_queue(2)) printf("");
-  if (!push_queue(3)) printf("");
-  if (!push_queue(9)) printf("");
-  // Mostra os valores atuais
-  show_vec();
-  if (!push_queue(4)) printf("");
-  if (!push_queue(15)) printf("");  // vai mostrar fila cheia
-  // mostra os valores da fila
-  show_vec();
+// Constantes
+enum {
+  OPTION_DESELECT = 0,
+  OPTION_PUSH,
+  OPTION_REMOVE,
+  OPTION_SHOW,
+  OPTION_EXIT
+};
 
-  // Início da remoção
-  if (!move_queue(&retirado)) printf("ERRO DE FILA!!!\n");
-  if (!push_queue(7))
-    printf("Fila cheia\n");  // tem que inserir o 7 no lugar do 5
-  show_vec();
-  if (!move_queue(&retirado)) printf("ERRO DE FILA!!!\n");
-  if (!move_queue(&retirado)) printf("ERRO DE FILA!!!\n");
-  if (!move_queue(&retirado)) printf("ERRO DE FILA!!!\n");
-  if (!move_queue(&retirado)) printf("ERRO DE FILA!!!\n");
-  if (!move_queue(&retirado))
-    printf("ERRO DE FILA!!!\n");  // mostra Erro de Fila
-  show_vec();
+// Protótipos
+int menu();
+
+int main(int argc, char *argv[]) {
+  int removed_from_queue = 0;
+  int option = OPTION_DESELECT;
+  int inserted_number = 0;
+
+  while (option != OPTION_EXIT) {
+    option = menu();
+
+    switch (option) {
+      case OPTION_PUSH:
+        printf("Digite um número: ");
+        scanf("%d", &inserted_number);
+        if (!push_queue(inserted_number)) printf("\n\n");
+        break;
+      case OPTION_REMOVE:
+        if (!move_queue(&removed_from_queue)) printf("\n\n");
+        break;
+      case OPTION_SHOW:
+        show_vec();
+        break;
+      case OPTION_EXIT:
+        break;
+      default:
+        printf("Opção Inválida\n");
+    }
+  }
+
   return EXIT_SUCCESS;
+}
+
+int menu() {
+  int op = OPTION_DESELECT;
+
+  printf("Menu\n");
+  printf("%d - Adicionar\n", OPTION_PUSH);
+  printf("%d - Retirar\n", OPTION_REMOVE);
+  printf("%d - Imprimir\n", OPTION_SHOW);
+  printf("%d - Sair\n", OPTION_EXIT);
+  printf("Digite sua opcao: ");
+  scanf("%d", &op);
+
+  return op;
 }

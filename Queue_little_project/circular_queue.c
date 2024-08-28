@@ -31,7 +31,7 @@ bool move_queue(int* value) {
   }
   printf("Retirando o valor %d da fila\n", vec_queue[queue_start]);
   *value = vec_queue[queue_start];
-  if (queue_start == queue_end) flag_queue[queue_start] = VAZIA;
+  flag_queue[queue_start] = VAZIA;
   queue_start++;
   if (queue_start == FIM_FILA) queue_start = INICIO_FILA;
   return true;
@@ -52,7 +52,7 @@ void show_vec() {
           round = true;
         }
         if (i == queue_end && round) break;
-        printf("Fila[%d] = %d\n", i + 1, vec_queue[i]);
+        if (!flag_queue[i]) printf("Fila[%d] = %d\n", i + 1, vec_queue[i]);
       }
     }
   } else {
