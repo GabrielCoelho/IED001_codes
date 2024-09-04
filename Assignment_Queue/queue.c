@@ -13,7 +13,7 @@ int queue_start = START_QUEUE;
 int random_number = 0;
 
 int randomize() {
-  random_number = (random() % 20) + 1;
+  random_number = (random() % 20) + 10;
   if (!duplicated(random_number)) {
     return randomize();
   }
