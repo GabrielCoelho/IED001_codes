@@ -10,7 +10,7 @@ enum {
   OPTION_DESELECT = 0,
   OPTION_PUSH,
   OPTION_REMOVE,
-  OPTION_SHOW,
+  // OPTION_SHOW,
   OPTION_EXIT
 };
 
@@ -18,6 +18,7 @@ enum {
 int menu();
 
 int main(int argc, char *argv[]) {
+  srand(time(NULL));
   int removed_from_queue = 0;
   int option = OPTION_DESELECT;
   int inserted_number = 0;
@@ -33,9 +34,9 @@ int main(int argc, char *argv[]) {
       case OPTION_REMOVE:
         if (!move_queue(&removed_from_queue)) printf("\n\n");
         break;
-      case OPTION_SHOW:
-        show_vec();
-        break;
+      // case OPTION_SHOW:
+      //  show_vec();
+      // break;
       case OPTION_EXIT:
         break;
       default:
@@ -50,9 +51,9 @@ int menu() {
   int op = OPTION_DESELECT;
 
   printf("Menu\n");
-  printf("%d - Adicionar\n", OPTION_PUSH);
-  printf("%d - Retirar\n", OPTION_REMOVE);
-  printf("%d - Imprimir\n", OPTION_SHOW);
+  printf("%d - Pegar Senha\n", OPTION_PUSH);
+  printf("%d - Atender Senha\n", OPTION_REMOVE);
+  // printf("%d - Imprimir\n", OPTION_SHOW);
   printf("%d - Sair\n", OPTION_EXIT);
   printf("Digite sua opcao: ");
   scanf("%d", &op);

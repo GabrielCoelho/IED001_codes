@@ -10,11 +10,13 @@ int vec_queue[END_QUEUE];
 bool flag_queue[END_QUEUE] = {EMPTY, EMPTY, EMPTY, EMPTY, EMPTY};
 int queue_end = START_QUEUE;
 int queue_start = START_QUEUE;
+int random_number = 0;
 
 int randomize() {
-  srand(time(NULL));
-  int random_number = (random() % 20) + 1;
-  if (duplicated(random_number)) return randomize();
+  random_number = (random() % 20) + 1;
+  if (!duplicated(random_number)) {
+    return randomize();
+  }
   return random_number;
 }
 
@@ -33,10 +35,10 @@ bool duplicated(int value) {
 
 bool push_queue(int value) {
   if (!flag_queue[queue_end]) {
-    printf("Fila cheia\n");
+    printf("\nFila cheia\n\n");
     return false;  // Fila cheia
   }
-  printf("Inserindo o valor %d na fila\n", value);
+  printf("\nAdicionada a senha %d na fila\n\n", value);
   vec_queue[queue_end] = value;
   flag_queue[queue_end] = NOT_EMPTY;
   queue_end++;
@@ -48,10 +50,10 @@ bool push_queue(int value) {
 
 bool move_queue(int* value) {
   if (flag_queue[queue_start]) {
-    printf("Fila vazia");
+    printf("\nFila vazia\n\n");
     return false;
   }
-  printf("Retirando o valor %d da fila\n", vec_queue[queue_start]);
+  printf("\nSenha a ser atendida: %d\n\n", vec_queue[queue_start]);
   *value = vec_queue[queue_start];
   flag_queue[queue_start] = EMPTY;
   queue_start++;

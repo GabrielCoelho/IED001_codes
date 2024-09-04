@@ -11,6 +11,7 @@ enum { END_QUEUE = 5, START_QUEUE = 0, EMPTY = true, NOT_EMPTY = false };
 extern int vec_queue[END_QUEUE];
 extern int queue_end;
 extern int queue_start;
+extern int random_number;
 
 int randomize();
 bool duplicated(int value);
