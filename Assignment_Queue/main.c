@@ -1,4 +1,4 @@
-// Copyright «2024» Gabriel Coelho Soares
+// Copyright «2024» Gabriel Coelho Soares & Marcos Moreira Martins
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
