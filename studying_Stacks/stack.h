@@ -12,9 +12,9 @@ struct MY_STACK {
 void push(int number);
 bool pop(int* number);
 void show();
-void alter(int number);
-void search(int number);
-void find_prev(int number);
-void find_next(int number);
+void alter(int number);      // @TODO
+void search(int number);     // @TODO
+void find_prev(int number);  // @TODO
+void find_next(int number);  // @TODO
 
 #endif  // !STACK_H
