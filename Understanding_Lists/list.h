@@ -18,6 +18,6 @@ bool list_search_index(int index);
 bool list_search_value(int value);
 bool list_sort();
 bool list_expand();
-bool list_set();
+bool list_set(int index, int value);
 
 #endif  // !LIST_H

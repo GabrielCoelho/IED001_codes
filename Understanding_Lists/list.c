@@ -69,3 +69,25 @@ bool list_search_value(int value) {
   }
   return false;
 }
+
+bool list_set(int index, int value) {
+  if (!list_search_index(index)) {
+    printf("Couldn't set other value \n");
+    return false;
+  }
+  my_list[index - 1] = value;
+  return true;
+}
+
+bool list_sort() {
+  int aux = 0;
+  for (int i = 0; i < reference - 1; i++) {
+    for (int j = i + 1; j <= reference; j++) {
+      if (my_list[i] > my_list[j]) {
+        aux = my_list[i];
+        my_list[i] = my_list[j];
+        my_list[j] = aux;
+      }
+    }
+  }
+}

@@ -32,5 +32,14 @@ int main(int argc, char *argv[]) {
     printf("Didn't found eighteen\n");
   }
 
+  list_set(2, 7);
+  for (int i = 0; i < reference; i++) {
+    printf("%d - ", my_list[i]);
+  }
+  list_sort();
+  printf("\n\n");
+  for (int i = 0; i < reference; i++) {
+    printf("%d - ", my_list[i]);
+  }
   return EXIT_SUCCESS;
 }
