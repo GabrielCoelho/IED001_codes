@@ -26,17 +26,28 @@ bool list_add(int number) {
   return true;
 }
 
-bool list_delete(int* remove) {
+bool list_delete(int* remove, int index) {
+  int aux;
   if (is_empty) {
     printf("Couldn't remove due to list is empty \n");
     return false;
   }
-  *remove = *list_pointer;
+  if (index > reference || index <= 0) {
+    printf(
+        "Couldn't remove due: index provided doesn't match the number of "
+        "elements\n");
+    return false;
+  }
+  *remove = my_list[index - 1];
+  for (int i = index - 1; i < reference - 1; i++) {
+    aux = my_list[i];
+    my_list[i] = my_list[i + 1];
+    my_list[i + 1] = aux;
+  }
   reference--;
   if (reference == 0) {
     is_empty = true;
   } else {
-    list_pointer--;
   }
   return true;
 }
@@ -79,7 +90,7 @@ bool list_set(int index, int value) {
   return true;
 }
 
-bool list_sort() {
+void list_sort() {
   int aux = 0;
   for (int i = 0; i < reference - 1; i++) {
     for (int j = i + 1; j <= reference; j++) {
@@ -88,6 +99,14 @@ bool list_sort() {
         my_list[i] = my_list[j];
         my_list[j] = aux;
       }
+    }
+  }
+}
+
+void list_show() {
+  if (!is_empty) {
+    for (int i = 0; i < reference; i++) {
+      printf("| %d | ", my_list[i]);
     }
   }
 }

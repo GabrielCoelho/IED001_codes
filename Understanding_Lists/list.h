@@ -13,11 +13,12 @@ int extern reference;
 
 int list_size();
 bool list_add(int number);
-bool list_delete(int* remove);
+bool list_delete(int* remove, int index);
 bool list_search_index(int index);
 bool list_search_value(int value);
-bool list_sort();
+void list_sort();
 bool list_expand();
 bool list_set(int index, int value);
+void list_show();
 
 #endif  // !LIST_H
