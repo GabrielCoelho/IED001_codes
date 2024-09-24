@@ -25,6 +25,12 @@ int main(int argc, char *argv[]) {
   printf("\n");
 
   list_search_index(5);
+  list_search_index(-2);
+  list_search_index(12);
+  list_search_value(2);
+  if (!list_search_value(18)) {
+    printf("Didn't found eighteen\n");
+  }
 
   return EXIT_SUCCESS;
 }

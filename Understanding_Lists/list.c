@@ -51,3 +51,21 @@ bool list_search_index(int index) {
   printf("Index: %d\nElement: %d\n\n", index, my_list[index - 1]);
   return true;
 }
+
+bool list_search_value(int value) {
+  bool found = false;
+  if (is_empty) {
+    printf("Couldn't search because list is empty\n");
+    return false;
+  }
+  for (int i = 0; i < reference; i++) {
+    if (my_list[i] == value) {
+      printf("Element: %d\nIndex: %d\n\n", value, i + 1);
+      found = true;
+    }
+  }
+  if (found) {
+    return true;
+  }
+  return false;
+}
