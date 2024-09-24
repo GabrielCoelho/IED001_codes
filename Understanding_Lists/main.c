@@ -24,16 +24,7 @@ int main(int argc, char *argv[]) {
   }
   printf("\n");
 
-  list_delete(&removed_from_list);
-  printf("Removed: %d from list\n", removed_from_list);
-  list_delete(&removed_from_list);
-  printf("Removed: %d from list\n", removed_from_list);
-  list_delete(&removed_from_list);
-  printf("Removed: %d from list\n", removed_from_list);
-  for (int i = 0; i < reference; i++) {
-    printf("%d - ", my_list[i]);
-  }
-  printf("\n");
+  list_search_index(5);
 
   return EXIT_SUCCESS;
 }

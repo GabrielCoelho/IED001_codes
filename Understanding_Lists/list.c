@@ -33,9 +33,21 @@ bool list_delete(int* remove) {
   }
   *remove = *list_pointer;
   reference--;
-  list_pointer--;
   if (reference == 0) {
     is_empty = true;
+  } else {
+    list_pointer--;
   }
+  return true;
+}
+
+bool list_search_index(int index) {
+  if (index > reference || index <= 0) {
+    printf(
+        "Couldn't search due: index provided doesn't match the number of "
+        "elements\n");
+    return false;
+  }
+  printf("Index: %d\nElement: %d\n\n", index, my_list[index - 1]);
   return true;
 }
