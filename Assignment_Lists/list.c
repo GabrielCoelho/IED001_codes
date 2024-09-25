@@ -107,29 +107,34 @@ void list_set(int index) {
   printf("Name: %s\nNew value: ", list_pointer[index].name);
   if (getchar() != '\n') {
     scanf("%s", name);
+    fflush(stdin);
     not_name = true;
   }
   printf("CPF: %d\n", list_pointer[index].cpf);
   if (getchar() != '\n') {
     scanf("%d", &cpf);
+    fflush(stdin);
     not_cpf = true;
   }
   printf("Address: %s\nInsert a new value or just press enter: ",
          list_pointer[index].address);
   if (getchar() != '\n') {
     scanf("%s", address);
+    fflush(stdin);
     not_address = true;
   }
   printf("Phone Number: %d\nInsert a new value or just press enter: ",
          list_pointer[index].phone_number);
   if (getchar() != '\n') {
     scanf("%d", &phone);
+    fflush(stdin);
     not_phone = true;
   }
   printf("Email: %s\nInsert a new value or just press enter: ",
          list_pointer[index].email);
   if (getchar() != '\n') {
     scanf("%s", email);
+    fflush(stdin);
     not_email = true;
   }
 
