@@ -47,7 +47,6 @@ bool list_delete(int* remove, int index) {
   reference--;
   if (reference == 0) {
     is_empty = true;
-  } else {
   }
   return true;
 }
@@ -93,7 +92,7 @@ bool list_set(int index, int value) {
 void list_sort() {
   int aux = 0;
   for (int i = 0; i < reference - 1; i++) {
-    for (int j = i + 1; j <= reference; j++) {
+    for (int j = i + 1; j < reference; j++) {
       if (my_list[i] > my_list[j]) {
         aux = my_list[i];
         my_list[i] = my_list[j];
@@ -108,5 +107,7 @@ void list_show() {
     for (int i = 0; i < reference; i++) {
       printf("| %d | ", my_list[i]);
     }
+  } else {
+    printf("List is empty\n");
   }
 }

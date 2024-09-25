@@ -14,7 +14,9 @@ enum {
   OPT_SEARCHINDEX,
   OPT_SEARCHVALUE,
   OPT_SHOWLIST,
+  OPT_SHOWSIZE,
   OPT_EXIT,
+
 };
 
 int menu();
@@ -87,6 +89,7 @@ int menu() {
   printf("%d - Search via index\n", OPT_SEARCHINDEX);
   printf("%d - Search via value\n", OPT_SEARCHVALUE);
   printf("%d - Show list\n", OPT_SHOWLIST);
+  printf("%d - View the list size\n", OPT_SHOWSIZE);
   printf("%d - Exit\n", OPT_EXIT);
   scanf("%d", &option);
   return option;
