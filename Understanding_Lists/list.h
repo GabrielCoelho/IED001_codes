@@ -16,7 +16,7 @@ int list_size();
 bool list_add(int number);
 bool list_delete(int* remove, int index);
 bool list_search_index(int index);
-bool list_search_value(int value);
+int list_search_value(int value);
 void list_sort();
 void list_resize();
 bool list_set(int index, int value);

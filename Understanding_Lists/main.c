@@ -16,7 +16,6 @@ enum {
   OPT_SHOWLIST,
   OPT_SHOWSIZE,
   OPT_EXIT,
-
 };
 
 int menu();
@@ -24,7 +23,7 @@ int menu();
 int main(int argc, char *argv[]) {
   initialize();
   int removed_from_list = 0;
-  int value, index;
+  int value, index, aux;
   int op = 0;
   printf("Simple Lists inside an array");
   while (op != OPT_EXIT) {
@@ -36,9 +35,9 @@ int main(int argc, char *argv[]) {
         list_add(value);
         break;
       case OPT_REMOVE:
-        printf("Please, insert an index: \n");
-        scanf("%d", &index);
-        if (!list_delete(&removed_from_list, index)) {
+        printf("Please, insert an value to be deleted: \n");
+        scanf("%d", &value);
+        if (!list_delete(&removed_from_list, value)) {
           printf("Try again\n\n");
         }
         break;
@@ -62,8 +61,11 @@ int main(int argc, char *argv[]) {
       case OPT_SEARCHVALUE:
         printf("Please, insert an value: \n");
         scanf("%d", &value);
-        if (!list_search_value(value)) {
+        aux = list_search_value(value);
+        if (aux == -1) {
           printf("Couldn't find the value\n");
+        } else {
+          printf("The value searched (%d) is in index: %d\n", value, aux + 1);
         }
         break;
       case OPT_SHOWLIST:

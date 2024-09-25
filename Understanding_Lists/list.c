@@ -32,23 +32,21 @@ bool list_add(int number) {
   return true;
 }
 
-bool list_delete(int* remove, int index) {
-  int aux;
+bool list_delete(int* remove, int value) {
+  int aux = list_search_value(value);
   if (is_empty) {
     printf("Couldn't remove due to list is empty \n");
     return false;
   }
-  if (index > reference || index <= 0) {
+  if (aux > reference || aux < 0) {
     printf(
         "Couldn't remove due: index provided doesn't match the number of "
         "elements\n");
     return false;
   }
-  *remove = list_pointer[index - 1];
-  for (int i = index - 1; i < reference - 1; i++) {
-    aux = list_pointer[i];
+  *remove = list_pointer[aux];
+  for (int i = aux; i < reference - 1; i++) {
     list_pointer[i] = list_pointer[i + 1];
-    list_pointer[i + 1] = aux;
   }
   reference--;
   if (reference == 0) {
@@ -68,22 +66,16 @@ bool list_search_index(int index) {
   return true;
 }
 
-bool list_search_value(int value) {
-  bool found = false;
-  if (is_empty) {
-    printf("Couldn't search because list is empty\n");
-    return false;
-  }
-  for (int i = 0; i < reference; i++) {
-    if (list_pointer[i] == value) {
-      printf("Element: %d\nIndex: %d\n\n", value, i + 1);
-      found = true;
+int list_search_value(int value) {
+  if (!is_empty) {
+    for (int i = 0; i < reference; i++) {
+      if (list_pointer[i] == value) {
+        // printf("Element: %d\nIndex: %d\n\n", value, i + 1);
+        return i;
+      }
     }
   }
-  if (found) {
-    return true;
-  }
-  return false;
+  return -1;
 }
 
 bool list_set(int index, int value) {
