@@ -29,8 +29,7 @@ bool list_search_index(int index);
 int list_search_value(int data_cpf);
 void list_sort();
 void list_resize();
-bool list_set(char *data_name, char *data_address, int data_cpf, int data_phone,
-              char *data_email);
+void list_set(int index);
 void list_show();
 
 #endif  // !LIST_H

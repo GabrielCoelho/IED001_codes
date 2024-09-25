@@ -5,6 +5,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
+#include <strings.h>
 
 // int list_pointer[HIGHEST];
 
@@ -22,9 +23,6 @@ bool initialize() {
 }
 
 bool check_doops_cpf(int cpf) {
-  if (is_empty) {
-    return false;
-  }
   for (int i = 0; i < reference; i++) {
     if (list_pointer[i].cpf == cpf) {
       return false;
@@ -54,8 +52,8 @@ bool list_add(char *data_name, char *data_address, int data_cpf, int data_phone,
   return true;
 }
 
-bool list_delete(int *remove, int value) {
-  int aux = list_search_value(value);
+bool list_delete(struct Data *removed, int data_cpf) {
+  int aux = list_search_value(data_cpf);
   if (is_empty) {
     printf("Couldn't remove due to list is empty \n");
     return false;
@@ -66,7 +64,7 @@ bool list_delete(int *remove, int value) {
         "elements\n");
     return false;
   }
-  *remove = list_pointer[aux];
+  *removed = list_pointer[aux];
   for (int i = aux; i < reference - 1; i++) {
     list_pointer[i] = list_pointer[i + 1];
   }
@@ -88,10 +86,11 @@ bool list_search_index(int index) {
   return true;
 }
 
-int list_search_value(int value) {
+// will only search CPF
+int list_search_value(int data_cpf) {
   if (!is_empty) {
     for (int i = 0; i < reference; i++) {
-      if (list_pointer[i] == value) {
+      if (list_pointer[i].cpf == data_cpf) {
         // printf("Element: %d\nIndex: %d\n\n", value, i + 1);
         return i;
       }
@@ -100,21 +99,52 @@ int list_search_value(int value) {
   return -1;
 }
 
-bool list_set(char *data_name, char *data_address, int data_cpf, int data_phone,
-              char *data_email) {
-  if (!list_search_index(data_cpf)) {
-    printf("Couldn't set other value \n");
-    return false;
+void list_set(int index) {
+  char name[40], address[100], email[60];
+  int phone, cpf;
+  bool not_name, not_address, not_phone, not_cpf, not_email;
+  printf("Insert a new value or just press enter: \n");
+  printf("Name: %s\nNew value: ", list_pointer[index].name);
+  if (getchar() != '\n') {
+    scanf("%s", name);
+    not_name = true;
   }
-  list_pointer[index - 1] = value;
-  return true;
+  printf("CPF: %d\n", list_pointer[index].cpf);
+  if (getchar() != '\n') {
+    scanf("%d", &cpf);
+    not_cpf = true;
+  }
+  printf("Address: %s\nInsert a new value or just press enter: ",
+         list_pointer[index].address);
+  if (getchar() != '\n') {
+    scanf("%s", address);
+    not_address = true;
+  }
+  printf("Phone Number: %d\nInsert a new value or just press enter: ",
+         list_pointer[index].phone_number);
+  if (getchar() != '\n') {
+    scanf("%d", &phone);
+    not_phone = true;
+  }
+  printf("Email: %s\nInsert a new value or just press enter: ",
+         list_pointer[index].email);
+  if (getchar() != '\n') {
+    scanf("%s", email);
+    not_email = true;
+  }
+
+  if (not_name) strcpy(list_pointer[index].name, name);
+  if (not_address) strcpy(list_pointer[index].address, address);
+  if (not_email) strcpy(list_pointer[index].email, email);
+  if (not_phone) list_pointer[index].phone_number = phone;
+  if (not_cpf) list_pointer[index].cpf = cpf;
 }
 
 void list_sort() {
-  int aux = 0;
+  struct Data aux;
   for (int i = 0; i < reference - 1; i++) {
     for (int j = i + 1; j < reference; j++) {
-      if (list_pointer[i] > list_pointer[j]) {
+      if (strcmp(list_pointer[i].name, list_pointer[j].name) > 0) {
         aux = list_pointer[i];
         list_pointer[i] = list_pointer[j];
         list_pointer[j] = aux;
@@ -126,8 +156,13 @@ void list_sort() {
 void list_show() {
   if (!is_empty) {
     for (int i = 0; i < reference; i++) {
-      printf("| %d | ", list_pointer[i]);
+      printf("Name: %s\t", list_pointer[i].name);
+      printf("CPF: %d\n", list_pointer[i].cpf);
+      printf("Address: %s\n", list_pointer[i].address);
+      printf("Phone: %d\t", list_pointer[i].phone_number);
+      printf("Email: %s\n", list_pointer[i].email);
     }
+    printf("\n\n");
   } else {
     printf("List is empty\n");
   }
@@ -135,7 +170,7 @@ void list_show() {
 
 void list_resize() {
   HIGHEST += HIGHEST / 2;
-  int *aux = malloc(HIGHEST * sizeof(struct Data));
+  struct Data *aux = malloc(HIGHEST * sizeof(struct Data));
   for (int i = 0; i < reference; i++) {
     aux[i] = list_pointer[i];
   }
