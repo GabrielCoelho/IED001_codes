@@ -22,6 +22,7 @@ enum {
 int menu();
 
 int main(int argc, char *argv[]) {
+  initialize();
   int removed_from_list = 0;
   int value, index;
   int op = 0;
@@ -69,6 +70,10 @@ int main(int argc, char *argv[]) {
         list_show();
         break;
       case OPT_EXIT:
+        free(list_pointer);
+        break;
+      case OPT_SHOWSIZE:
+        printf("%d", list_size());
         break;
       default:
         printf("Option not found, please try again\n");

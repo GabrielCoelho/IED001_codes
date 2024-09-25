@@ -5,23 +5,29 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-int my_list[HIGHEST];
-int* list_pointer = &my_list[0];
+// int list_pointer[HIGHEST];
+
+int HIGHEST = 5;
+int* list_pointer;
 int reference = 0;
 bool is_empty = true;
+
+bool initialize() {
+  list_pointer = malloc(HIGHEST * sizeof(int));
+  if (!list_pointer) {
+    return false;
+  }
+  return true;
+}
 
 int list_size() { return reference; }
 
 bool list_add(int number) {
   if (reference == HIGHEST) {
-    printf("Couldn't add due to list is full\n");
-    return false;
+    list_resize();
   }
-  *list_pointer = number;
+  list_pointer[reference] = number;
   reference++;
-  if (reference != HIGHEST) {
-    list_pointer++;
-  }
   is_empty = false;
   return true;
 }
@@ -38,11 +44,11 @@ bool list_delete(int* remove, int index) {
         "elements\n");
     return false;
   }
-  *remove = my_list[index - 1];
+  *remove = list_pointer[index - 1];
   for (int i = index - 1; i < reference - 1; i++) {
-    aux = my_list[i];
-    my_list[i] = my_list[i + 1];
-    my_list[i + 1] = aux;
+    aux = list_pointer[i];
+    list_pointer[i] = list_pointer[i + 1];
+    list_pointer[i + 1] = aux;
   }
   reference--;
   if (reference == 0) {
@@ -58,7 +64,7 @@ bool list_search_index(int index) {
         "elements\n");
     return false;
   }
-  printf("Index: %d\nElement: %d\n\n", index, my_list[index - 1]);
+  printf("Index: %d\nElement: %d\n\n", index, list_pointer[index - 1]);
   return true;
 }
 
@@ -69,7 +75,7 @@ bool list_search_value(int value) {
     return false;
   }
   for (int i = 0; i < reference; i++) {
-    if (my_list[i] == value) {
+    if (list_pointer[i] == value) {
       printf("Element: %d\nIndex: %d\n\n", value, i + 1);
       found = true;
     }
@@ -85,7 +91,7 @@ bool list_set(int index, int value) {
     printf("Couldn't set other value \n");
     return false;
   }
-  my_list[index - 1] = value;
+  list_pointer[index - 1] = value;
   return true;
 }
 
@@ -93,10 +99,10 @@ void list_sort() {
   int aux = 0;
   for (int i = 0; i < reference - 1; i++) {
     for (int j = i + 1; j < reference; j++) {
-      if (my_list[i] > my_list[j]) {
-        aux = my_list[i];
-        my_list[i] = my_list[j];
-        my_list[j] = aux;
+      if (list_pointer[i] > list_pointer[j]) {
+        aux = list_pointer[i];
+        list_pointer[i] = list_pointer[j];
+        list_pointer[j] = aux;
       }
     }
   }
@@ -105,9 +111,19 @@ void list_sort() {
 void list_show() {
   if (!is_empty) {
     for (int i = 0; i < reference; i++) {
-      printf("| %d | ", my_list[i]);
+      printf("| %d | ", list_pointer[i]);
     }
   } else {
     printf("List is empty\n");
   }
+}
+
+void list_resize() {
+  HIGHEST += HIGHEST / 2;
+  int* aux = malloc(HIGHEST * sizeof(int));
+  for (int i = 0; i < reference; i++) {
+    aux[i] = list_pointer[i];
+  }
+  free(list_pointer);
+  list_pointer = aux;
 }
