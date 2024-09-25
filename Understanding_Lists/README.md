@@ -12,10 +12,13 @@ Exemplo:
 
 valor a ser retirado: 3
 
-passo 1: | 1 | 2 |   | 4 | 5 |
-passo 2: | 1 | 2 | 4 |   | 5 |
-passo 3: | 1 | 2 | 4 | 5 |   |
-passo 3: | 1 | 2 | 4 | 5 | <- remove a referência do tamanho/posição da lista.
+passo 1: | 1 | 2 | _3_ | 4 | 5 |
+
+passo 2: | 1 | 2 | 4 | _3_ | 5 |
+
+passo 3: | 1 | 2 | 4 | 5 | _3_ |
+
+passo 4: | 1 | 2 | 4 | 5 | <- remove a referência do tamanho/posição da lista.
 
 ## Funções da Lista
 
