@@ -21,7 +21,9 @@ enum {
 int menu();
 
 int main(int argc, char *argv[]) {
-  initialize();
+  if (!initialize()) {
+    return EXIT_FAILURE;
+  }
   int removed_from_list = 0;
   int value, index, aux;
   int op = 0;

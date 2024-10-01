@@ -5,6 +5,8 @@
 #include <stdbool.h>
 #include <stdio.h>
 
+#include <cstdlib>
+
 // int list_pointer[HIGHEST];
 
 int HIGHEST = 5;
@@ -113,6 +115,9 @@ void list_show() {
 void list_resize() {
   HIGHEST += HIGHEST / 2;
   int* aux = malloc(HIGHEST * sizeof(int));
+  if (!aux) {
+    return EXIT_FAILURE;
+  }
   for (int i = 0; i < reference; i++) {
     aux[i] = list_pointer[i];
   }
