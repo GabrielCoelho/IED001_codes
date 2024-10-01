@@ -1,15 +1,15 @@
 mod stack;
 
-use std::io::{self, stdin};
+use std::io::*;
 
 use stack::*;
 
 pub enum Menu {
-    OptDesselect,
-    OptAdd,
-    OptRemove,
-    OptShow,
-    OptExit,
+    OptDesselect = 0,
+    OptAdd = 1,
+    OptRemove = 2,
+    OptShow = 3,
+    OptExit = 4,
 }
 
 fn main() {
