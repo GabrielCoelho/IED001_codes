@@ -5,8 +5,8 @@
 struct Data {
   char name[40];
   char address[100];
-  int cpf;
-  int phone_number;
+  char cpf[12];
+  char phone_number[14];
   char email[60];
 };
 
@@ -19,14 +19,14 @@ extern struct Data *list_pointer;
 extern int reference;
 extern bool is_empty;
 
-bool check_doops_cpf(int cpf);
+bool check_doops_cpf(char cpf);
 bool initialize();
 int list_size();
-bool list_add(char *data_name, char *data_address, int data_cpf, int data_phone,
-              char *data_email);
-bool list_delete(struct Data *removed, int data_cpf);
+bool list_add(char *data_name, char *data_address, char *data_cpf,
+              char *data_phone, char *data_email);
+bool list_delete(struct Data *removed, char *data_cpf);
 bool list_search_index(int index);
-int list_search_value(int data_cpf);
+int list_search_value(char *data_cpf);
 void list_sort();
 void list_resize();
 void list_set(int index);

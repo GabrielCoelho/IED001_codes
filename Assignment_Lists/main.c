@@ -2,6 +2,8 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <strings.h>
 
 #include "../Assignment_Lists/list.h"
 
@@ -21,25 +23,32 @@ int menu();
 int main(int argc, char *argv[]) {
   initialize();
   struct Data removed_from_list;
-  char name[40], address[100], email[60];
-  int cpf, phone, aux;
+  char name[40], address[100], email[60], phone[14], cpf[12];
+  int aux;
   int op = 0;
   printf("Simple Lists inside an array");
   while (op != OPT_EXIT) {
     op = menu();
+    scanf("%*c");
     switch (op) {
       case OPT_ADD:
         printf("Insert the value of the data below\nCPF: ");
-        scanf("%d", &cpf);
+        fgets(cpf, 12, stdin);
+        cpf[strcspn(cpf, "\n")] = '\0';
+        scanf("%*c");
         if (list_search_value(cpf) == -1) {
           printf("Name: ");
-          scanf("%s", name);
+          fgets(name, 39, stdin);
+          name[strcspn(name, "\n")] = '\0';
           printf("Address: ");
-          scanf("%s", address);
+          fgets(address, 99, stdin);
+          address[strcspn(address, "\n")] = '\0';
           printf("Phone Number: ");
-          scanf("%d", &phone);
+          fgets(phone, 14, stdin);
+          phone[strcspn(phone, "\n")] = '\0';
           printf("Email: ");
-          scanf("%s", email);
+          fgets(email, 59, stdin);
+          email[strcspn(email, "\n")] = '\0';
           if (!list_add(name, address, cpf, phone, email)) {
             printf("Couldn't Add to the data\nTry Again\n\n ");
           }

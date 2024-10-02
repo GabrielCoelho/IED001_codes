@@ -22,9 +22,10 @@ bool initialize() {
   return true;
 }
 
-bool check_doops_cpf(int cpf) {
+bool check_doops_cpf(char cpf) {
   for (int i = 0; i < reference; i++) {
-    if (list_pointer[i].cpf == cpf) {
+    printf("%s\n%s\n", list_pointer[i].cpf, &cpf);
+    if (strcmp(list_pointer[i].cpf, &cpf) == 0) {
       return false;
     }
   }
@@ -33,26 +34,26 @@ bool check_doops_cpf(int cpf) {
 
 int list_size() { return reference; }
 
-bool list_add(char *data_name, char *data_address, int data_cpf, int data_phone,
-              char *data_email) {
+bool list_add(char *data_name, char *data_address, char *data_cpf,
+              char *data_phone, char *data_email) {
   if (reference == HIGHEST) {
     list_resize();
   }
-  if (!check_doops_cpf(data_cpf)) {
+  if (!check_doops_cpf(*data_cpf)) {
     printf("CPF Already listed\n ");
     return false;
   }
   strcpy(list_pointer[reference].name, data_name);
   strcpy(list_pointer[reference].address, data_address);
   strcpy(list_pointer[reference].email, data_email);
-  list_pointer[reference].cpf = data_cpf;
-  list_pointer[reference].phone_number = data_phone;
+  strcpy(list_pointer[reference].phone_number, data_phone);
+  strcpy(list_pointer[reference].cpf, data_cpf);
   reference++;
   is_empty = false;
   return true;
 }
 
-bool list_delete(struct Data *removed, int data_cpf) {
+bool list_delete(struct Data *removed, char *data_cpf) {
   int aux = list_search_value(data_cpf);
   if (is_empty) {
     printf("Couldn't remove due to list is empty \n");
@@ -87,10 +88,10 @@ bool list_search_index(int index) {
 }
 
 // will only search CPF
-int list_search_value(int data_cpf) {
+int list_search_value(char *data_cpf) {
   if (!is_empty) {
     for (int i = 0; i < reference; i++) {
-      if (list_pointer[i].cpf == data_cpf) {
+      if (strcmp(list_pointer[i].cpf, data_cpf)) {
         // printf("Element: %d\nIndex: %d\n\n", value, i + 1);
         return i;
       }
@@ -100,49 +101,44 @@ int list_search_value(int data_cpf) {
 }
 
 void list_set(int index) {
-  char name[40], address[100], email[60];
-  int phone, cpf;
+  char name[40], address[100], email[60], phone[14], check_cpf[12];
+  int cpf;
   bool not_name, not_address, not_phone, not_cpf, not_email;
   printf("Insert a new value or just press enter: \n");
   printf("Name: %s\nNew value: ", list_pointer[index].name);
-  if (getchar() != '\n') {
-    scanf("%s", name);
-    fflush(stdin);
-    not_name = true;
+  fgets(name, 39, stdin);
+  if (strcspn(name, "\n") == 0) {
+    not_name = false;
   }
+
   printf("CPF: %d\n", list_pointer[index].cpf);
-  if (getchar() != '\n') {
-    scanf("%d", &cpf);
-    fflush(stdin);
-    not_cpf = true;
+  fgets(check_cpf, 11, stdin);
+  if (strcspn(check_cpf, "\n") == 0) {
+    not_cpf = false;
   }
   printf("Address: %s\nInsert a new value or just press enter: ",
          list_pointer[index].address);
-  if (getchar() != '\n') {
-    scanf("%s", address);
-    fflush(stdin);
-    not_address = true;
+  fgets(address, 99, stdin);
+  if (strcspn(address, "\n") == 0) {
+    not_name = false;
   }
-  printf("Phone Number: %d\nInsert a new value or just press enter: ",
+  printf("Phone Number: %s\nInsert a new value or just press enter: ",
          list_pointer[index].phone_number);
-  if (getchar() != '\n') {
-    scanf("%d", &phone);
-    fflush(stdin);
-    not_phone = true;
+  fgets(phone, 14, stdin);
+  if (strcspn(phone, "\n") == 0) {
+    not_name = false;
   }
   printf("Email: %s\nInsert a new value or just press enter: ",
          list_pointer[index].email);
-  if (getchar() != '\n') {
-    scanf("%s", email);
-    fflush(stdin);
-    not_email = true;
+  fgets(email, 59, stdin);
+  if (strcspn(email, "\n") == 0) {
+    not_name = false;
   }
-
   if (not_name) strcpy(list_pointer[index].name, name);
   if (not_address) strcpy(list_pointer[index].address, address);
   if (not_email) strcpy(list_pointer[index].email, email);
-  if (not_phone) list_pointer[index].phone_number = phone;
-  if (not_cpf) list_pointer[index].cpf = cpf;
+  if (not_phone) strcpy(list_pointer[index].phone_number, phone);
+  if (not_cpf) strcpy(list_pointer[index].cpf, check_cpf);
 }
 
 void list_sort() {
@@ -162,9 +158,9 @@ void list_show() {
   if (!is_empty) {
     for (int i = 0; i < reference; i++) {
       printf("Name: %s\t", list_pointer[i].name);
-      printf("CPF: %d\n", list_pointer[i].cpf);
+      printf("CPF: %s\n", list_pointer[i].cpf);
       printf("Address: %s\n", list_pointer[i].address);
-      printf("Phone: %d\t", list_pointer[i].phone_number);
+      printf("Phone: %s\t", list_pointer[i].phone_number);
       printf("Email: %s\n", list_pointer[i].email);
     }
     printf("\n\n");
