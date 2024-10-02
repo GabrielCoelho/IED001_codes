@@ -33,22 +33,17 @@ int main(int argc, char *argv[]) {
     switch (op) {
       case OPT_ADD:
         printf("Insert the value of the data below\nCPF: ");
-        fgets(cpf, 12, stdin);
-        cpf[strcspn(cpf, "\n")] = '\0';
-        scanf("%*c");
+        read_line(cpf, 12);
+        // scanf("%*c");
         if (list_search_value(cpf) == -1) {
           printf("Name: ");
-          fgets(name, 39, stdin);
-          name[strcspn(name, "\n")] = '\0';
+          read_line(name, 40);
           printf("Address: ");
-          fgets(address, 99, stdin);
-          address[strcspn(address, "\n")] = '\0';
+          read_line(address, 100);
           printf("Phone Number: ");
-          fgets(phone, 14, stdin);
-          phone[strcspn(phone, "\n")] = '\0';
+          read_line(phone, 14);
           printf("Email: ");
-          fgets(email, 59, stdin);
-          email[strcspn(email, "\n")] = '\0';
+          read_line(email, 60);
           if (!list_add(name, address, cpf, phone, email)) {
             printf("Couldn't Add to the data\nTry Again\n\n ");
           }
@@ -58,14 +53,14 @@ int main(int argc, char *argv[]) {
         break;
       case OPT_REMOVE:
         printf("Which CPF that was added you want to exclude?\nCPF: ");
-        scanf("%d", &cpf);
+        read_line(cpf, 12);
         if (!list_delete(&removed_from_list, cpf)) {
           printf("\n");
         }
         break;
       case OPT_SET:
         printf("Insert below the CPF to update the data\nCPF: ");
-        scanf("%d", &cpf);
+        read_line(cpf, 12);
         aux = list_search_value(cpf);
         if (aux != -1) {
           list_set(aux);
@@ -75,12 +70,12 @@ int main(int argc, char *argv[]) {
         break;
       case OPT_SHOWONE:
         printf("Insert below the CPF to show the data relate to it: ");
-        scanf("%d", &cpf);
+        read_line(cpf, 12);
         aux = list_search_value(cpf);
         if (aux != -1) {
-          printf("%s\t%d\n%s\n%d\t%s\n\n", list_pointer[aux].name, cpf,
-                 list_pointer[aux].address, list_pointer[aux].phone_number,
-                 list_pointer[aux].email);
+          printf("Name: %s\tCPF: %s\nAddress: %s\nPhone: %s\tEmail: %s\n",
+                 list_pointer[aux].name, cpf, list_pointer[aux].address,
+                 list_pointer[aux].phone_number, list_pointer[aux].email);
         }
         break;
       case OPT_SHOWALL:
@@ -92,7 +87,6 @@ int main(int argc, char *argv[]) {
       case OPT_EXIT:
         free(list_pointer);
         break;
-      default:
     }
   }
   return EXIT_SUCCESS;

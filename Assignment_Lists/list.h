@@ -31,5 +31,6 @@ void list_sort();
 void list_resize();
 void list_set(int index);
 void list_show();
+void read_line(char *input_buffer, int length);
 
 #endif  // !LIST_H
