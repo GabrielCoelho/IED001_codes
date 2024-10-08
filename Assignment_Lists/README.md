@@ -61,3 +61,8 @@ O programa deverá ordenar a lista pelos nomes cadastrados.
 Sai do sistema.
 
 -------
+
+Projeto realizado por:
+[Gabriel Coelho Soares](https://github.com/GabrielCoelho) e [Marcos Moreira Martins](https://github.com/hmindiano)
+
+Finalizado em: 2024-10-02 às 14:38 (GMT -3).
