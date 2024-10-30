@@ -1,0 +1,1 @@
+/home/gabrielcoelho/1.\ Projetos/IED001_codes/Applying_on_Rust/Assignment_Stack_Rust/target/debug/Assignment_Stack_Rust: /home/gabrielcoelho/1.\ Projetos/IED001_codes/Applying_on_Rust/Assignment_Stack_Rust/src/main.rs
