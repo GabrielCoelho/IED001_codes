@@ -27,19 +27,29 @@ struct linkedList *newData(int data) {
 void addNewData(int data) {
   newPointer = newData(data);
 
+  // If my start is NULL, the list is empty, so I just start the list by adding
+  // the pointers of start and end at the same new data pointer.
   if (start == NULL) {
     start = newPointer;
     end = newPointer;
   } else {
+    // Since lists are always in the ascendent order, if my new data is lesser
+    // than the start data, I must add it at the start.
     if (newPointer->data < start->data) {
       addAtStart();
     } else {
+      // here, I need to set an auxiliar pointer and a "previous" pointer to the
+      // start, and go thru my list, checking if the auxiliar data is greater
+      // than my new data.
       aux = start;
       prev = start;
       while (aux->data < newPointer->data && aux->next != NULL) {
         prev = aux;
         aux = aux->next;
       }
+      // once is done, we check again to see if we need to add the new data at
+      // the end (so, if the new data is greater than the auxiliar data), or in
+      // the middle.
       if (newPointer->data > aux->data) {
         addAtEnd();
       } else {
