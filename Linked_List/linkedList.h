@@ -7,6 +7,7 @@
 #include <stdlib.h>
 
 struct linkedList {
+  struct linkedList *prev;
   int data;
   struct linkedList *next;
 };
@@ -93,7 +94,11 @@ int peekLast();
 
 void toBeginning();
 
+void toEnd();
+
 bool toNext();
+
+bool toPrevious();
 
 bool getCurrent(int *ext_data);
 #endif  // !LINKEDLIST_H

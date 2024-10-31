@@ -19,6 +19,7 @@ struct linkedList *newData(int data) {
     EXIT_FAILURE;
   }
 
+  newNode->prev = NULL;
   newNode->data = data;
   newNode->next = NULL;
   return newNode;
@@ -61,17 +62,21 @@ void addNewData(int data) {
 
 void addAtStart() {
   newPointer->next = start;
+  start->prev = newPointer;
   start = newPointer;
 }
 
 void addAtEnd() {
   end->next = newPointer;
+  newPointer->prev = end;
   end = newPointer;
 }
 
 void addInTheMiddle() {
   newPointer->next = aux;
+  newPointer->prev = prev;
   prev->next = newPointer;
+  aux->prev = newPointer;
 }
 
 void removeItem(int data) {
@@ -98,7 +103,7 @@ void removeItem(int data) {
 }
 
 void removeAtStart() {
-  if (start->next == NULL) {
+  if (start->next == NULL && start->prev == NULL) {
     free(start);
     start = NULL;
   } else {
@@ -116,6 +121,7 @@ void removeAtEnd() {
 
 void removeInTheMiddle() {
   prev->next = aux->next;
+  aux->next->prev = prev;
   free(aux);
 }
 
@@ -140,11 +146,21 @@ int peekLast() { return end->data; }
 
 void toBeginning() { current = start; }
 
+void toEnd() { current = end; }
+
 bool toNext() {
   if (current == NULL || current->next == NULL) {
     return false;
   }
   current = current->next;
+  return true;
+}
+
+bool toPrevious() {
+  if (current == NULL || current->prev == NULL) {
+    return false;
+  }
+  current = current->prev;
   return true;
 }
 
