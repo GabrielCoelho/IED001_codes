@@ -17,4 +17,6 @@ extern struct linkedList *aux;
 extern struct linkedList *prev;
 extern struct linkedList *current;
 
+struct linkedList *newData(int data);
+
 #endif  // !LINKEDLIST_H
