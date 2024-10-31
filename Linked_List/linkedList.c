@@ -118,3 +118,40 @@ void removeInTheMiddle() {
   prev->next = aux->next;
   free(aux);
 }
+
+void initialize() {
+  start = NULL;
+  end = NULL;
+}
+
+void terminator(struct linkedList *who) {
+  if (who == NULL) {
+    return;
+  }
+  if (who->next != NULL) {
+    terminator(who->next);
+  }
+  free(who);
+}
+
+int peekFirst() { return start->data; }
+
+int peekLast() { return end->data; }
+
+void toBeginning() { current = start; }
+
+bool toNext() {
+  if (current == NULL || current->next == NULL) {
+    return false;
+  }
+  current = current->next;
+  return true;
+}
+
+bool getCurrent(int *ext_data) {
+  if (current != NULL) {
+    *ext_data = current->data;
+    return true;
+  }
+  return false;
+}

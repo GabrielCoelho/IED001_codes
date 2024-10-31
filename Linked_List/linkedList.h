@@ -83,4 +83,17 @@ void removeAtEnd();
  * need to free this auxiliar.*/
 void removeInTheMiddle();
 
+void initialize();
+
+void terminator(struct linkedList *who);
+
+int peekFirst();
+
+int peekLast();
+
+void toBeginning();
+
+bool toNext();
+
+bool getCurrent(int *ext_data);
 #endif  // !LINKEDLIST_H

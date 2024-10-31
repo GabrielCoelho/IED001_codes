@@ -4,4 +4,70 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char *argv[]) { return EXIT_SUCCESS; }
+#include "linkedList.h"
+enum {
+  OPT_DESSELECT,
+  OPT_ADD,
+  OPT_REMOVE,
+  OPT_SHOW,
+  OPT_EXIT,
+};
+
+int menu();
+void showAll();
+
+int main(int argc, char *argv[]) {
+  int op = OPT_DESSELECT;
+  int data = 0;
+
+  initialize();
+
+  while (op != OPT_EXIT) {
+    op = menu();
+    switch (op) {
+      case OPT_ADD:
+        printf("Enter a number: ");
+        scanf("%d", &data);
+        addNewData(data);
+        break;
+      case OPT_REMOVE:
+        printf("Enter a number: ");
+        scanf("%d", &data);
+        removeItem(data);
+        break;
+      case OPT_SHOW:
+        showAll();
+        break;
+      case OPT_EXIT:
+        break;
+      default:
+        printf("Option invalid\nTry again\n");
+    }
+  }
+
+  terminator(start);
+
+  return EXIT_SUCCESS;
+}
+
+int menu() {
+  int option = 0;
+  printf("\nChoose an option:\n");
+  printf("%d - Add a Data\n", OPT_ADD);
+  printf("%d - Remove a Data\n", OPT_REMOVE);
+  printf("%d - Show all data\n", OPT_SHOW);
+  printf("%d - Exit\n", OPT_EXIT);
+  scanf("%d", &option);
+  return option;
+}
+
+void showAll() {
+  int data;
+  toBeginning();
+  do {
+    if (getCurrent(&data)) {
+      printf("%d ", data);
+    }
+  } while (toNext());
+  printf("\n ");
+}
