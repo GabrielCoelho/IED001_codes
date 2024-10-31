@@ -73,3 +73,48 @@ void addInTheMiddle() {
   newPointer->next = aux;
   prev->next = newPointer;
 }
+
+void removeItem(int data) {
+  if (start == NULL) {
+    return;
+  }
+  if (start->data == data) {
+    removeAtStart();
+  } else {
+    aux = start;
+    prev = start;
+    while (aux->data != data && aux->next != NULL) {
+      prev = aux;
+      aux = aux->next;
+    }
+    if (aux->data == data) {
+      if (aux->next == NULL) {
+        removeAtEnd();
+      } else {
+        removeInTheMiddle();
+      }
+    }
+  }
+}
+
+void removeAtStart() {
+  if (start->next == NULL) {
+    free(start);
+    start = NULL;
+  } else {
+    aux = start;
+    start = start->next;
+    free(aux);
+  }
+}
+
+void removeAtEnd() {
+  prev->next = NULL;
+  free(end);
+  end = prev;
+}
+
+void removeInTheMiddle() {
+  prev->next = aux->next;
+  free(aux);
+}

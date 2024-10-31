@@ -55,4 +55,32 @@ void addAtEnd();
  * been started, it doesn't need any parameter or return types*/
 void addInTheMiddle();
 
+/**
+ * Remove an item if it exists
+ * This function removes an item of the list if it exists. Basically the
+ * opposite of addNewData, this function is also a parent of this other three
+ * functions, to remove at the begining, at the end and in between the middle.
+ * @params data -> an integer value*/
+void removeItem(int data);
+
+/**
+ * Remove the first item
+ * This function is only called by its parent, and basically removes the first
+ * item. It checks if the list has only one item or not to be precise and to not
+ * derreferenciate any pointers*/
+void removeAtStart();
+
+/**
+ * Remove the last item
+ * This function is only called by its paretn, and removes the last item of the
+ * list, pointing the previous one to NULL and freeing the memory. */
+void removeAtEnd();
+
+/**
+ * Remove an item in the middle
+ * This function is only called by its parent, sets the "next" field of the
+ * previous pointer to the next field of the auxiliar pointer. Then, we just
+ * need to free this auxiliar.*/
+void removeInTheMiddle();
+
 #endif  // !LINKEDLIST_H
