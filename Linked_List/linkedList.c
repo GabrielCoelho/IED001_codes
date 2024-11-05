@@ -109,6 +109,7 @@ void removeAtStart() {
   } else {
     aux = start;
     start = start->next;
+    start->prev = NULL;
     free(aux);
   }
 }
