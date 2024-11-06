@@ -2,23 +2,19 @@
 #ifndef BTREE_H
 #define BTREE_H
 
-struct BTree {
-  struct BTree *left;
-  int data;
-  struct BTree *right;
-};
+#include "config.h"
 
-extern struct BTree *start;
-extern struct BTree *newPointer;
-extern struct BTree *aux;
-extern struct BTree *prev;
-extern struct BTree *current;
+extern struct PKey *start;
+extern struct PKey *newPointer;
+extern struct PKey *aux;
+extern struct PKey *prev;
+extern struct PKey *current;
 
 void initialize();
-void finalize(struct BTree *who);
-struct BTree *localize(int data, struct BTree *where);
-struct BTree *newData(int data);
-void addNewData(struct BTree *who, struct BTree *where);
-void removeData(int data);
+void finalize(struct PKey *who);
+struct PKey *localize(char cpf_searched, struct PKey *where);
+struct PKey *newData(char cpf);
+void addNewData(struct PKey *who, struct PKey *where);
+void removeData(char cpf);
 
 #endif  // BTREE_H!
