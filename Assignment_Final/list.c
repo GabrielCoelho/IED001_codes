@@ -54,19 +54,19 @@ bool list_add(char *data_name, char *data_address, char *data_cpf,
 }
 
 bool list_delete(struct Database *removed, char *data_cpf) {
-  int aux = list_search_value(data_cpf);
+  int aux_list = list_search_value(data_cpf);
   if (is_empty) {
     printf("Couldn't remove due to list is empty \n");
     return false;
   }
-  if (aux > reference || aux < 0) {
+  if (aux_list > reference || aux_list < 0) {
     printf(
         "Couldn't remove due: index provided doesn't match the number of "
         "elements\n");
     return false;
   }
-  *removed = list_pointer[aux];
-  for (int i = aux; i < reference - 1; i++) {
+  *removed = list_pointer[aux_list];
+  for (int i = aux_list; i < reference - 1; i++) {
     list_pointer[i] = list_pointer[i + 1];
   }
   reference--;
@@ -142,13 +142,13 @@ void list_set(int index) {
 }
 
 void list_sort() {
-  struct Database aux;
+  struct Database aux_list;
   for (int i = 0; i < reference - 1; i++) {
     for (int j = i + 1; j < reference; j++) {
       if (strcmp(list_pointer[i].name, list_pointer[j].name) > 0) {
-        aux = list_pointer[i];
+        aux_list = list_pointer[i];
         list_pointer[i] = list_pointer[j];
-        list_pointer[j] = aux;
+        list_pointer[j] = aux_list;
       }
     }
   }
@@ -171,12 +171,12 @@ void list_show() {
 
 void list_resize() {
   HIGHEST += HIGHEST / 2;
-  struct Database *aux = malloc(HIGHEST * sizeof(struct Database));
+  struct Database *aux_list = malloc(HIGHEST * sizeof(struct Database));
   for (int i = 0; i < reference; i++) {
-    aux[i] = list_pointer[i];
+    aux_list[i] = list_pointer[i];
   }
   free(list_pointer);
-  list_pointer = aux;
+  list_pointer = aux_list;
 }
 
 void read_line(char *input_buffer, int length) {

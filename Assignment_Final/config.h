@@ -24,9 +24,9 @@ struct Database {
 // Linked List
 struct Ordering {
   int register_number;
-  char nome[60];
-  struct Database *next;
-  struct Database *prev;
+  char name[60];
+  struct Ordering *next;
+  struct Ordering *prev;
 };
 
 #endif  // !CONFIG_H

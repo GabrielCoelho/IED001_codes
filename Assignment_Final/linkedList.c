@@ -4,28 +4,29 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-struct linkedList *start = NULL;
-struct linkedList *end = NULL;
-struct linkedList *newPointer = NULL;
-struct linkedList *aux = NULL;
-struct linkedList *prev = NULL;
-struct linkedList *current = NULL;
+struct Ordering *start = NULL;
+struct Ordering *end = NULL;
+struct Ordering *newPointer = NULL;
+struct Ordering *aux = NULL;
+struct Ordering *prev = NULL;
+struct Ordering *current = NULL;
 
-struct linkedList *newData(int data) {
-  struct linkedList *newNode = malloc(sizeof(struct linkedList));
+struct Ordering *newData(char data) {
+  struct Ordering *newNode = malloc(sizeof(struct Ordering));
   if (!newNode) {
     printf("Couldn't allocate any memory\nExiting...\n ");
     EXIT_FAILURE;
   }
 
   newNode->prev = NULL;
-  newNode->data = data;
+  strcpy(newNode->name, &data);
   newNode->next = NULL;
   return newNode;
 }
 
-void addNewData(int data) {
+void addNewData(char data) {
   newPointer = newData(data);
 
   // If my start is NULL, the list is empty, so I just start the list by adding
@@ -36,7 +37,7 @@ void addNewData(int data) {
   } else {
     // Since lists are always in the ascendent order, if my new data is lesser
     // than the start data, I must add it at the start.
-    if (newPointer->data < start->data) {
+    if (strcmp(newPointer->name, start->name) < 0) {
       addAtStart();
     } else {
       // here, I need to set an auxiliar pointer and a "previous" pointer to the
@@ -44,14 +45,14 @@ void addNewData(int data) {
       // than my new data.
       aux = start;
       prev = start;
-      while (aux->data < newPointer->data && aux->next != NULL) {
+      while (strcmp(aux->name, newPointer->name) < 0 && aux->next != NULL) {
         prev = aux;
         aux = aux->next;
       }
       // once is done, we check again to see if we need to add the new data at
       // the end (so, if the new data is greater than the auxiliar data), or in
       // the middle.
-      if (newPointer->data > aux->data) {
+      if (strcmp(newPointer->name, aux->name) > 0) {
         addAtEnd();
       } else {
         addInTheMiddle();
@@ -79,60 +80,12 @@ void addInTheMiddle() {
   aux->prev = newPointer;
 }
 
-void removeItem(int data) {
-  if (start == NULL) {
-    return;
-  }
-  if (start->data == data) {
-    removeAtStart();
-  } else {
-    aux = start;
-    prev = start;
-    while (aux->data != data && aux->next != NULL) {
-      prev = aux;
-      aux = aux->next;
-    }
-    if (aux->data == data) {
-      if (aux->next == NULL) {
-        removeAtEnd();
-      } else {
-        removeInTheMiddle();
-      }
-    }
-  }
-}
-
-void removeAtStart() {
-  if (start->next == NULL && start->prev == NULL) {
-    free(start);
-    start = NULL;
-    end = NULL;
-  } else {
-    aux = start;
-    start = start->next;
-    start->prev = NULL;
-    free(aux);
-  }
-}
-
-void removeAtEnd() {
-  prev->next = NULL;
-  free(end);
-  end = prev;
-}
-
-void removeInTheMiddle() {
-  prev->next = aux->next;
-  aux->next->prev = prev;
-  free(aux);
-}
-
 void initialize() {
   start = NULL;
   end = NULL;
 }
 
-void terminator(struct linkedList *who) {
+void terminator(struct Ordering *who) {
   if (who == NULL) {
     return;
   }
@@ -142,9 +95,9 @@ void terminator(struct linkedList *who) {
   free(who);
 }
 
-int peekFirst() { return start->data; }
+char *peekFirst() { return start->name; }
 
-int peekLast() { return end->data; }
+char *peekLast() { return end->name; }
 
 void toBeginning() { current = start; }
 
@@ -166,9 +119,9 @@ bool toPrevious() {
   return true;
 }
 
-bool getCurrent(int *ext_data) {
+bool getCurrent(char *ext_data) {
   if (current != NULL) {
-    *ext_data = current->data;
+    strcpy(ext_data, current->name);
     return true;
   }
   return false;

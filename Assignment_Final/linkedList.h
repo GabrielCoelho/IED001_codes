@@ -6,26 +6,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct linkedList {
-  struct linkedList *prev;
-  int data;
-  struct linkedList *next;
-};
+#include "config.h"
 
-extern struct linkedList *start;
-extern struct linkedList *end;
-extern struct linkedList *newPointer;
-extern struct linkedList *aux;
-extern struct linkedList *prev;
-extern struct linkedList *current;
+extern struct Ordering *start;
+extern struct Ordering *end;
+extern struct Ordering *newPointer;
+extern struct Ordering *aux;
+extern struct Ordering *prev;
+extern struct Ordering *current;
 
 /**
  * Struct LinkedList newData pointer.
- * This function allocates a memory of a linkedList struct size, and points to
+ * This function allocates a memory of a Ordering struct size, and points to
  * it. Then it returns this pointer
  * @params data -> an integer value
  * @return pointer to a LinkedList Struct*/
-struct linkedList *newData(int data);
+struct Ordering *newData(char name);
 
 /**
  * Add new Data
@@ -33,7 +29,7 @@ struct linkedList *newData(int data);
  * created. Since the list is always ascendent sorted, this function checks
  * where to put the new value, and calls for other three functions.
  * @params data -> an integer value*/
-void addNewData(int data);
+void addNewData(char name);
 
 /**
  * Add the data at the begining of the list
@@ -62,7 +58,7 @@ void addInTheMiddle();
  * opposite of addNewData, this function is also a parent of this other three
  * functions, to remove at the begining, at the end and in between the middle.
  * @params data -> an integer value*/
-void removeItem(int data);
+void removeItem(char data);
 
 /**
  * Remove the first item
@@ -86,11 +82,11 @@ void removeInTheMiddle();
 
 void initialize();
 
-void terminator(struct linkedList *who);
+void terminator(struct Ordering *who);
 
-int peekFirst();
+char *peekFirst();
 
-int peekLast();
+char *peekLast();
 
 void toBeginning();
 
@@ -100,5 +96,5 @@ bool toNext();
 
 bool toPrevious();
 
-bool getCurrent(int *ext_data);
+bool getCurrent(char *ext_data);
 #endif  // !LINKEDLIST_H
