@@ -19,3 +19,12 @@ We gonna use Dinamic Lists to simulate a Disk Database, a Bidirectional Linked L
 ## Modules
 
 The main file will access the Dinamic List as the Database, which will contain all the data listed above; the Bidirectional Linked List as the ordering index, containing only the name and registry number, and the Binary Tree as the Primary Key, containing only the CPF and registry number.
+
+## Group
+
+This group is formed by:
+
+- @GabrielCoelho
+- @renan-mazzilli
+- @M-Araujo26
+- @marcusfrnds
