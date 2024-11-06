@@ -24,7 +24,7 @@ The main file will access the Dinamic List as the Database, which will contain a
 
 This group is formed by:
 
-- @GabrielCoelho
-- @renan-mazzilli
-- @M-Araujo26
-- @marcusfrnds
+- [@GabrielCoelho](https://github.com/GabrielCoelho)
+- [@renan-mazzilli](https://github.com/renan-mazzilli)
+- [@M-Araujo26](https://github.com/M-Araujo26)
+- [@marcusfrnds](https://github.com/marcusfrnds)
