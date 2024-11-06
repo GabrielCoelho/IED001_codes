@@ -14,9 +14,9 @@ struct PKey {
 // Dinamic List
 struct Database {
   char cpf[11];
-  char nome[60];
+  char name[60];
   char address[100];
-  char telephone[13];
+  char phone_number[13];
   char email[60];
   struct Database *next;
 };
