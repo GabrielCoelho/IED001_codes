@@ -106,6 +106,7 @@ void removeAtStart() {
   if (start->next == NULL && start->prev == NULL) {
     free(start);
     start = NULL;
+    end = NULL;
   } else {
     aux = start;
     start = start->next;
