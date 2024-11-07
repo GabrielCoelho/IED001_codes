@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct Ordering *start = NULL;
+struct Ordering *start_dlist = NULL;
 struct Ordering *end = NULL;
 struct Ordering *newPointer = NULL;
 struct Ordering *aux = NULL;
@@ -31,20 +31,20 @@ void addNewData(char data) {
 
   // If my start is NULL, the list is empty, so I just start the list by adding
   // the pointers of start and end at the same new data pointer.
-  if (start == NULL) {
-    start = newPointer;
+  if (start_dlist == NULL) {
+    start_dlist = newPointer;
     end = newPointer;
   } else {
     // Since lists are always in the ascendent order, if my new data is lesser
     // than the start data, I must add it at the start.
-    if (strcmp(newPointer->name, start->name) < 0) {
+    if (strcmp(newPointer->name, start_dlist->name) < 0) {
       addAtStart();
     } else {
       // here, I need to set an auxiliar pointer and a "previous" pointer to the
       // start, and go thru my list, checking if the auxiliar data is greater
       // than my new data.
-      aux = start;
-      prev = start;
+      aux = start_dlist;
+      prev = start_dlist;
       while (strcmp(aux->name, newPointer->name) < 0 && aux->next != NULL) {
         prev = aux;
         aux = aux->next;
@@ -62,9 +62,9 @@ void addNewData(char data) {
 }
 
 void addAtStart() {
-  newPointer->next = start;
-  start->prev = newPointer;
-  start = newPointer;
+  newPointer->next = start_dlist;
+  start_dlist->prev = newPointer;
+  start_dlist = newPointer;
 }
 
 void addAtEnd() {
@@ -81,7 +81,7 @@ void addInTheMiddle() {
 }
 
 void initialize() {
-  start = NULL;
+  start_dlist = NULL;
   end = NULL;
 }
 
@@ -95,11 +95,11 @@ void terminator(struct Ordering *who) {
   free(who);
 }
 
-char *peekFirst() { return start->name; }
+char *peekFirst() { return start_dlist->name; }
 
 char *peekLast() { return end->name; }
 
-void toBeginning() { current = start; }
+void toBeginning() { current = start_dlist; }
 
 void toEnd() { current = end; }
 

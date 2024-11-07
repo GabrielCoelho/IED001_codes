@@ -8,7 +8,7 @@
 
 #include "config.h"
 
-extern struct Ordering *start;
+extern struct Ordering *start_dlist;
 extern struct Ordering *end;
 extern struct Ordering *newPointer;
 extern struct Ordering *aux;
