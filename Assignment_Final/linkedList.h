@@ -6,14 +6,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "config.h"
+struct Ordering {
+  int register_number;
+  char name[60];
+  struct Ordering *next;
+  struct Ordering *prev;
+};
 
 extern struct Ordering *start_dlist;
-extern struct Ordering *end;
-extern struct Ordering *newPointer;
-extern struct Ordering *aux;
-extern struct Ordering *prev;
-extern struct Ordering *current;
+extern struct Ordering *end_dlist;
+extern struct Ordering *newPointer_dlist;
+extern struct Ordering *aux_dlist;
+extern struct Ordering *prev_dlist;
+extern struct Ordering *current_dlist;
 
 /**
  * Struct LinkedList newData pointer.
@@ -21,7 +26,7 @@ extern struct Ordering *current;
  * it. Then it returns this pointer
  * @params data -> an integer value
  * @return pointer to a LinkedList Struct*/
-struct Ordering *newData(char name);
+struct Ordering *newData_dlist(char name);
 
 /**
  * Add new Data
@@ -29,7 +34,7 @@ struct Ordering *newData(char name);
  * created. Since the list is always ascendent sorted, this function checks
  * where to put the new value, and calls for other three functions.
  * @params data -> an integer value*/
-void addNewData(char name);
+void addNewData_dlist(char name);
 
 /**
  * Add the data at the begining of the list
@@ -80,9 +85,9 @@ void removeAtEnd();
  * need to free this auxiliar.*/
 void removeInTheMiddle();
 
-void initialize();
+void initialize_dlist();
 
-void terminator(struct Ordering *who);
+void terminator_dlist(struct Ordering *who);
 
 char *peekFirst();
 

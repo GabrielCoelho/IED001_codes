@@ -7,11 +7,11 @@
 #include <string.h>
 
 struct Ordering *start_dlist = NULL;
-struct Ordering *end = NULL;
-struct Ordering *newPointer = NULL;
-struct Ordering *aux = NULL;
-struct Ordering *prev = NULL;
-struct Ordering *current = NULL;
+struct Ordering *end_dlist = NULL;
+struct Ordering *newPointer_dlist = NULL;
+struct Ordering *aux_dlist = NULL;
+struct Ordering *prev_dlist = NULL;
+struct Ordering *current_dlist = NULL;
 
 struct Ordering *newData(char data) {
   struct Ordering *newNode = malloc(sizeof(struct Ordering));
@@ -27,32 +27,33 @@ struct Ordering *newData(char data) {
 }
 
 void addNewData(char data) {
-  newPointer = newData(data);
+  newPointer_dlist = newData(data);
 
   // If my start is NULL, the list is empty, so I just start the list by adding
-  // the pointers of start and end at the same new data pointer.
+  // the pointers of start and end_dlist at the same new data pointer.
   if (start_dlist == NULL) {
-    start_dlist = newPointer;
-    end = newPointer;
+    start_dlist = newPointer_dlist;
+    end_dlist = newPointer_dlist;
   } else {
-    // Since lists are always in the ascendent order, if my new data is lesser
-    // than the start data, I must add it at the start.
-    if (strcmp(newPointer->name, start_dlist->name) < 0) {
+    // Since lists are always in the ascend_dlistent order, if my new data is
+    // lesser than the start data, I must add it at the start.
+    if (strcmp(newPointer_dlist->name, start_dlist->name) < 0) {
       addAtStart();
     } else {
-      // here, I need to set an auxiliar pointer and a "previous" pointer to the
-      // start, and go thru my list, checking if the auxiliar data is greater
-      // than my new data.
-      aux = start_dlist;
-      prev = start_dlist;
-      while (strcmp(aux->name, newPointer->name) < 0 && aux->next != NULL) {
-        prev = aux;
-        aux = aux->next;
+      // here, I need to set an aux_dlistiliar pointer and a "previous" pointer
+      // to the start, and go thru my list, checking if the aux_dlistiliar data
+      // is greater than my new data.
+      aux_dlist = start_dlist;
+      prev_dlist = start_dlist;
+      while (strcmp(aux_dlist->name, newPointer_dlist->name) < 0 &&
+             aux_dlist->next != NULL) {
+        prev_dlist = aux_dlist;
+        aux_dlist = aux_dlist->next;
       }
       // once is done, we check again to see if we need to add the new data at
-      // the end (so, if the new data is greater than the auxiliar data), or in
-      // the middle.
-      if (strcmp(newPointer->name, aux->name) > 0) {
+      // the end_dlist (so, if the new data is greater than the aux_dlistiliar
+      // data), or in the middle.
+      if (strcmp(newPointer_dlist->name, aux_dlist->name) > 0) {
         addAtEnd();
       } else {
         addInTheMiddle();
@@ -62,27 +63,27 @@ void addNewData(char data) {
 }
 
 void addAtStart() {
-  newPointer->next = start_dlist;
-  start_dlist->prev = newPointer;
-  start_dlist = newPointer;
+  newPointer_dlist->next = start_dlist;
+  start_dlist->prev = newPointer_dlist;
+  start_dlist = newPointer_dlist;
 }
 
 void addAtEnd() {
-  end->next = newPointer;
-  newPointer->prev = end;
-  end = newPointer;
+  end_dlist->next = newPointer_dlist;
+  newPointer_dlist->prev = end_dlist;
+  end_dlist = newPointer_dlist;
 }
 
 void addInTheMiddle() {
-  newPointer->next = aux;
-  newPointer->prev = prev;
-  prev->next = newPointer;
-  aux->prev = newPointer;
+  newPointer_dlist->next = aux_dlist;
+  newPointer_dlist->prev = prev_dlist;
+  prev_dlist->next = newPointer_dlist;
+  aux_dlist->prev = newPointer_dlist;
 }
 
 void initialize() {
   start_dlist = NULL;
-  end = NULL;
+  end_dlist = NULL;
 }
 
 void terminator(struct Ordering *who) {
@@ -97,31 +98,31 @@ void terminator(struct Ordering *who) {
 
 char *peekFirst() { return start_dlist->name; }
 
-char *peekLast() { return end->name; }
+char *peekLast() { return end_dlist->name; }
 
-void toBeginning() { current = start_dlist; }
+void toBeginning() { current_dlist = start_dlist; }
 
-void toEnd() { current = end; }
+void toEnd() { current_dlist = end_dlist; }
 
 bool toNext() {
-  if (current == NULL || current->next == NULL) {
+  if (current_dlist == NULL || current_dlist->next == NULL) {
     return false;
   }
-  current = current->next;
+  current_dlist = current_dlist->next;
   return true;
 }
 
 bool toPrevious() {
-  if (current == NULL || current->prev == NULL) {
+  if (current_dlist == NULL || current_dlist->prev == NULL) {
     return false;
   }
-  current = current->prev;
+  current_dlist = current_dlist->prev;
   return true;
 }
 
-bool getCurrent(char *ext_data) {
-  if (current != NULL) {
-    strcpy(ext_data, current->name);
+bool getcurrent_dlist(char *ext_data) {
+  if (current_dlist != NULL) {
+    strcpy(ext_data, current_dlist->name);
     return true;
   }
   return false;
