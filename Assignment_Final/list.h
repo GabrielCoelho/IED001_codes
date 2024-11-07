@@ -6,7 +6,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "config.h"
+struct Database {
+  char cpf[11];
+  char name[60];
+  char address[100];
+  char phone_number[13];
+  char email[60];
+  struct Database *next;
+};
 
 extern int HIGHEST;
 extern struct Database *list_pointer;
@@ -25,6 +32,5 @@ void list_sort();
 void list_resize();
 void list_set(int index);
 void list_show();
-void read_line(char *input_buffer, int length);
 
 #endif  // !LIST_H

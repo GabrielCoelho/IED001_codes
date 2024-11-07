@@ -178,16 +178,3 @@ void list_resize() {
   free(list_pointer);
   list_pointer = aux_list;
 }
-
-void read_line(char *input_buffer, int length) {
-  if (fgets(input_buffer, length, stdin) != NULL) {
-    if (strlen(input_buffer) > 0 &&
-        input_buffer[strlen(input_buffer) - 1] == '\n') {
-      input_buffer[strlen(input_buffer) - 1] = '\0';
-    } else {
-      int c;
-      while ((c = getchar()) != '\n' && c != EOF) {
-      }
-    }
-  }
-}

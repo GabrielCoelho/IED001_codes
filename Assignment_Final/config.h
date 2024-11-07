@@ -6,4 +6,6 @@
 #include "linkedList.h"
 #include "list.h"
 
+void read_line(char *input_buffer, int length);
+
 #endif  // !CONFIG_H
