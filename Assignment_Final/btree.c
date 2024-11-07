@@ -6,59 +6,58 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+struct PKey *btree_start;
+struct PKey *btree_newPointer;
+struct PKey *btree_aux;
+struct PKey *btree_prev;
+struct PKey *btree_current;
 
-struct PKey *start;
-struct PKey *newPointer;
-struct PKey *aux;
-struct PKey *prev;
-struct PKey *current;
+void initialize_btree() { btree_start = NULL; }
 
-void initialize() { start = NULL; }
-
-void finalize(struct PKey *who) {
-  if (start == NULL) {
+void finalize_btree(struct PKey *who) {
+  if (btree_start == NULL) {
     return;
   }
   if (who->left != NULL) {
     printf("Removing the left node from %s\n", who->cpf);
-    finalize(who->left);
+    finalize_btree(who->left);
   }
   if (who->right != NULL) {
     printf("Removing the right node from %s\n", who->cpf);
-    finalize(who->right);
+    finalize_btree(who->right);
   }
   printf("Removing node of data = %s\n", who->cpf);
   free(who);
 }
 
-struct PKey *localize(char cpf_searched, struct PKey *where) {
-  if (start == NULL) {
+struct PKey *localize_btree(char cpf_searched, struct PKey *where) {
+  if (btree_start == NULL) {
     return NULL;
   }
 
   if (strcmp(&cpf_searched, where->cpf) == 0) {
     return where;
   } else {
-    prev = where;
+    btree_prev = where;
     if (strcmp(&cpf_searched, where->cpf) > 0) {
       if (where->right == NULL) {
         return NULL;
       } else {
         printf("Going to the right of %s\n", where->cpf);
-        return localize(cpf_searched, where->right);
+        return localize_btree(cpf_searched, where->right);
       }
     } else if (strcmp(&cpf_searched, where->cpf) < 0) {
       if (where->left == NULL) {
         return NULL;
       } else {
         printf("Going to the left of %s\n", where->cpf);
-        return localize(cpf_searched, where->left);
+        return localize_btree(cpf_searched, where->left);
       }
     }
   }
 }
 
-struct PKey *newData(char cpf) {
+struct PKey *newData_btree(char cpf) {
   struct PKey *new = malloc(sizeof(struct PKey));
   if (!new) {
     printf("Error in memory allocation\n");
@@ -72,10 +71,10 @@ struct PKey *newData(char cpf) {
   return new;
 }
 
-void addNewData(struct PKey *who, struct PKey *where) {
-  if (start == NULL) {
-    printf("Adding at the start\n ");
-    start = who;
+void addNewData_btree(struct PKey *who, struct PKey *where) {
+  if (btree_start == NULL) {
+    printf("Adding at the btree_start\n ");
+    btree_start = who;
   } else {
     if (strcmp(who->cpf, where->cpf) > 0) {
       printf("Going right of node %s\n", where->cpf);
@@ -85,7 +84,7 @@ void addNewData(struct PKey *who, struct PKey *where) {
         where->right = who;
       } else {
         printf("Going towards node %s\n", where->right->cpf);
-        addNewData(who, where->right);
+        addNewData_btree(who, where->right);
       }
     }
 
@@ -97,38 +96,38 @@ void addNewData(struct PKey *who, struct PKey *where) {
         where->left = who;
       } else {
         printf("Going towards node %s\n", where->left->cpf);
-        addNewData(who, where->left);
+        addNewData_btree(who, where->left);
       }
     }
   }
 }
 
-void removeData(char cpf) {
-  if (start == NULL) {
+void removeData_btree(char cpf) {
+  if (btree_start == NULL) {
     return;
   }
 
-  aux = localize(cpf, start);
-  if (aux == NULL) {
+  btree_aux = localize_btree(cpf, btree_start);
+  if (btree_aux == NULL) {
     return;
   }
 
-  if (aux == start) {
-    start = NULL;
+  if (btree_aux == btree_start) {
+    btree_start = NULL;
   } else {
-    if (strcmp(&cpf, aux->cpf) > 0) {
-      prev->right = NULL;
+    if (strcmp(&cpf, btree_aux->cpf) > 0) {
+      btree_prev->right = NULL;
     } else {
-      prev->left = NULL;
+      btree_prev->left = NULL;
     }
   }
-  if (aux->left != NULL) {
-    addNewData(aux->left, start);
+  if (btree_aux->left != NULL) {
+    addNewData_btree(btree_aux->left, btree_start);
   }
-  if (aux->right != NULL) {
-    addNewData(aux->right, start);
+  if (btree_aux->right != NULL) {
+    addNewData_btree(btree_aux->right, btree_start);
   }
 
-  printf("Removing %s", aux->cpf);
-  free(aux);
+  printf("Removing %s", btree_aux->cpf);
+  free(btree_aux);
 }
