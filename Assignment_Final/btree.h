@@ -21,7 +21,7 @@ extern struct PKey *btree_current;
 
 void initialize_btree();
 void finalize_btree(struct PKey *who);
-bool localize_btree(char cpf_searched, struct PKey *where);
+struct PKey *localize_btree(char cpf_searched, struct PKey *where);
 struct PKey *newData_btree(char cpf);
 void addNewData_btree(struct PKey *who, struct PKey *where);
 void removeData_btree(char cpf);
