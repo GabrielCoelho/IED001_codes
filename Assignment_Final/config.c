@@ -7,6 +7,16 @@
 #include <string.h>
 #include <strings.h>
 
+#include "list.h"
+
+int regi = 0;
+
+void initialize() {
+  initialize_btree();
+  initialize_dlist();
+  initialize_list();
+}
+
 void read_line(char *input_buffer, int length) {
   if (fgets(input_buffer, length, stdin) != NULL) {
     if (strlen(input_buffer) > 0 &&
@@ -18,4 +28,26 @@ void read_line(char *input_buffer, int length) {
       }
     }
   }
+}
+
+bool addNewItem(char cpf) {
+  char name[40], address[100], email[60], phone[14];
+  if (!localize_btree(cpf, btree_start)) {
+    newData_btree(cpf);
+    regi = regi + 1;
+    printf("Name: ");
+    read_line(name, 40);
+    printf("Address: ");
+    read_line(address, 100);
+    printf("Phone Number: ");
+    read_line(phone, 14);
+    printf("Email: ");
+    read_line(email, 60);
+
+    addNewData_dlist(cpf);
+    list_add(name, address, &cpf, phone, email);
+
+    return true;
+  }
+  return false;
 }

@@ -2,10 +2,6 @@
 
 #include "btree.h"
 
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 struct PKey *btree_start;
 struct PKey *btree_newPointer;
 struct PKey *btree_aux;
@@ -30,25 +26,25 @@ void finalize_btree(struct PKey *who) {
   free(who);
 }
 
-struct PKey *localize_btree(char cpf_searched, struct PKey *where) {
+bool localize_btree(char cpf_searched, struct PKey *where) {
   if (btree_start == NULL) {
-    return NULL;
+    return false;
   }
 
   if (strcmp(&cpf_searched, where->cpf) == 0) {
-    return where;
+    return true;
   } else {
     btree_prev = where;
     if (strcmp(&cpf_searched, where->cpf) > 0) {
       if (where->right == NULL) {
-        return NULL;
+        return false;
       } else {
         printf("Going to the right of %s\n", where->cpf);
         return localize_btree(cpf_searched, where->right);
       }
     } else if (strcmp(&cpf_searched, where->cpf) < 0) {
       if (where->left == NULL) {
-        return NULL;
+        return false;
       } else {
         printf("Going to the left of %s\n", where->cpf);
         return localize_btree(cpf_searched, where->left);

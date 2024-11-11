@@ -21,7 +21,7 @@ extern int reference;
 extern bool is_empty;
 
 bool check_doops_cpf(char cpf);
-bool initialize();
+bool initialize_list();
 int list_size();
 bool list_add(char *data_name, char *data_address, char *data_cpf,
               char *data_phone, char *data_email);

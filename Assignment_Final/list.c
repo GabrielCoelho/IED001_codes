@@ -14,7 +14,7 @@ struct Database *list_pointer;
 int reference = 0;
 bool is_empty = true;
 
-bool initialize() {
+bool initialize_list() {
   list_pointer = malloc(HIGHEST * sizeof(*list_pointer));
   if (!list_pointer) {
     return false;

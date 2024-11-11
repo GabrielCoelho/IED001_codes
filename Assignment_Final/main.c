@@ -20,7 +20,6 @@ enum {
 int menu();
 
 int main(int argc, char *argv[]) {
-  initialize();
   struct Database removed_from_list;
   char name[40], address[100], email[60], phone[14], cpf[12];
   int aux;
