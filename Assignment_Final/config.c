@@ -1,17 +1,19 @@
 // Copyright (c) 2024 Gabriel Coelho Soares. All Rights Reserved.
 
-#include "config.h"
+#include "./config.h"
 
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
 #include <strings.h>
 
-#include "list.h"
+#include "./btree.h"
+#include "./linkedList.h"
+#include "./list.h"
 
 int regi = 0;
 
-void initialize() {
+void initializer() {
   initialize_btree();
   initialize_dlist();
   initialize_list();
@@ -30,10 +32,10 @@ void read_line(char *input_buffer, int length) {
   }
 }
 
-bool addNewItem(char cpf) {
+bool addNewItem(char cpf[]) {
   char name[40], address[100], email[60], phone[14];
-  if (!localize_btree(cpf, btree_start)) {
-    newData_btree(cpf);
+  if (!localize_btree(*cpf, btree_start)) {
+    newData_btree(*cpf);
     regi = regi + 1;
     printf("Name: ");
     read_line(name, 40);
@@ -44,8 +46,8 @@ bool addNewItem(char cpf) {
     printf("Email: ");
     read_line(email, 60);
 
-    addNewData_dlist(cpf);
-    list_add(name, address, &cpf, phone, email);
+    addNewData_dlist(*cpf);
+    list_add(name, address, *cpf, phone, email);
 
     return true;
   }

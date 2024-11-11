@@ -2,10 +2,9 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <strings.h>
 
-#include "config.h"
+#include "./config.h"
 
 enum {
   OPT_DESSELECT,
@@ -20,6 +19,7 @@ enum {
 int menu();
 
 int main(int argc, char *argv[]) {
+  initializer();
   struct Database removed_from_list;
   char name[40], address[100], email[60], phone[14], cpf[12];
   int aux;
@@ -32,8 +32,7 @@ int main(int argc, char *argv[]) {
       case OPT_ADD:
         printf("Insert the value of the data below\nCPF: ");
         read_line(cpf, 12);
-        if (list_search_value(cpf) == -1) {
-        } else {
+        if (!addNewItem(cpf)) {
           printf("CPF already registered\n");
         }
         break;

@@ -8,8 +8,8 @@
 
 extern int regi;
 
-void initialize();
+void initializer();
 void read_line(char *input_buffer, int length);
-bool addNewItem(char cpf);
+bool addNewItem(char cpf[]);
 
 #endif  // !CONFIG_H
