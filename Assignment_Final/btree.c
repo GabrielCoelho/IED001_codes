@@ -26,25 +26,25 @@ void finalize_btree(struct PKey *who) {
   free(who);
 }
 
-bool localize_btree(char cpf_searched, struct PKey *where) {
+struct PKey *localize_btree(char cpf_searched, struct PKey *where) {
   if (btree_start == NULL) {
-    return false;
+    return NULL;
   }
 
   if (strcmp(&cpf_searched, where->cpf) == 0) {
-    return true;
+    return where;
   } else {
     btree_prev = where;
     if (strcmp(&cpf_searched, where->cpf) > 0) {
       if (where->right == NULL) {
-        return false;
+        return NULL;
       } else {
         printf("Going to the right of %s\n", where->cpf);
         return localize_btree(cpf_searched, where->right);
       }
     } else if (strcmp(&cpf_searched, where->cpf) < 0) {
       if (where->left == NULL) {
-        return false;
+        return NULL;
       } else {
         printf("Going to the left of %s\n", where->cpf);
         return localize_btree(cpf_searched, where->left);
