@@ -49,6 +49,11 @@ int main(int argc, char *argv[]) {
         }
         break;
       case OPT_SEARCH:
+        printf("\nCPF: ");
+        read_line(cpf, 12);
+        if (!search_cpf(cpf)) {
+          printf("CPF Not found");
+        }
         break;
       case OPT_REPORT:
         break;

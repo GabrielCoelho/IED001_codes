@@ -32,9 +32,9 @@ void read_line(char *input_buffer, int length) {
 
 bool addNewItem(char cpf[]) {
   char name[40], address[100], email[60], phone[14];
-  if (localize_btree(*cpf, btree_start) != NULL || btree_start == NULL) {
-    addNewData_btree(newData_btree(cpf), btree_start);
+  if (localize_btree(cpf, btree_start) == NULL || btree_start == NULL) {
     regi = regi + 1;
+    addNewData_btree(newData_btree(cpf), btree_start);
     printf("Name: ");
     read_line(name, 40);
     printf("Address: ");
@@ -49,5 +49,14 @@ bool addNewItem(char cpf[]) {
 
     return true;
   }
+  return false;
+}
+
+bool search_cpf(char cpf[]) {
+  if (localize_btree(cpf, btree_start) != NULL) {
+    printf("Found\n");
+    return true;
+  }
+
   return false;
 }

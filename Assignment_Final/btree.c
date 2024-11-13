@@ -26,24 +26,24 @@ void finalize_btree(struct PKey *who) {
   free(who);
 }
 
-struct PKey *localize_btree(char cpf_searched, struct PKey *where) {
+struct PKey *localize_btree(char cpf_searched[], struct PKey *where) {
   if (btree_start == NULL) {
     return NULL;
   }
 
-  if (strcmp(&cpf_searched, where->cpf) == 0) {
+  if (strcmp(cpf_searched, where->cpf) == 0) {
     printf("found!");
     return where;
   } else {
     btree_prev = where;
-    if (strcmp(&cpf_searched, where->cpf) > 0) {
+    if (strcmp(cpf_searched, where->cpf) > 0) {
       if (where->right == NULL) {
         return NULL;
       } else {
         printf("Going to the right of %s\n", where->cpf);
         return localize_btree(cpf_searched, where->right);
       }
-    } else if (strcmp(&cpf_searched, where->cpf) < 0) {
+    } else if (strcmp(cpf_searched, where->cpf) < 0) {
       if (where->left == NULL) {
         return NULL;
       } else {
@@ -65,7 +65,7 @@ struct PKey *newData_btree(char cpf[]) {
 
   new->right = NULL;
   new->left = NULL;
-  strcpy(new->cpf, &cpf);
+  strcpy(new->cpf, cpf);
 
   return new;
 }
@@ -101,7 +101,7 @@ void addNewData_btree(struct PKey *who, struct PKey *where) {
   }
 }
 
-void removeData_btree(char cpf) {
+void removeData_btree(char cpf[]) {
   if (btree_start == NULL) {
     return;
   }
@@ -114,7 +114,7 @@ void removeData_btree(char cpf) {
   if (btree_aux == btree_start) {
     btree_start = NULL;
   } else {
-    if (strcmp(&cpf, btree_aux->cpf) > 0) {
+    if (strcmp(cpf, btree_aux->cpf) > 0) {
       btree_prev->right = NULL;
     } else {
       btree_prev->left = NULL;
