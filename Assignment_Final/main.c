@@ -23,7 +23,6 @@ int main(int argc, char *argv[]) {
   char name[40], address[100], email[60], phone[14], cpf[12];
   int aux;
   int op = 0;
-  printf("Simple Lists inside an array");
   while (op != OPT_EXIT) {
     op = menu();
     scanf("%*c");

@@ -32,6 +32,7 @@ struct PKey *localize_btree(char cpf_searched, struct PKey *where) {
   }
 
   if (strcmp(&cpf_searched, where->cpf) == 0) {
+    printf("found!");
     return where;
   } else {
     btree_prev = where;
@@ -51,9 +52,11 @@ struct PKey *localize_btree(char cpf_searched, struct PKey *where) {
       }
     }
   }
+
+  return NULL;
 }
 
-struct PKey *newData_btree(char cpf) {
+struct PKey *newData_btree(char cpf[]) {
   struct PKey *new = malloc(sizeof(struct PKey));
   if (!new) {
     printf("Error in memory allocation\n");

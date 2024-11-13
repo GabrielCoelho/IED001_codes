@@ -7,6 +7,8 @@
 #include <string.h>
 #include <strings.h>
 
+#include "btree.h"
+
 int regi = 0;
 
 void initializer() {
@@ -30,8 +32,8 @@ void read_line(char *input_buffer, int length) {
 
 bool addNewItem(char cpf[]) {
   char name[40], address[100], email[60], phone[14];
-  if (!localize_btree(*cpf, btree_start)) {
-    newData_btree(*cpf);
+  if (localize_btree(*cpf, btree_start) != NULL || btree_start == NULL) {
+    addNewData_btree(newData_btree(cpf), btree_start);
     regi = regi + 1;
     printf("Name: ");
     read_line(name, 40);
