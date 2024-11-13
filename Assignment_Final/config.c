@@ -1,15 +1,11 @@
 // Copyright (c) 2024 Gabriel Coelho Soares. All Rights Reserved.
 
-#include "./config.h"
+#include "config.h"
 
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
 #include <strings.h>
-
-#include "./btree.h"
-#include "./linkedList.h"
-#include "./list.h"
 
 int regi = 0;
 
@@ -47,7 +43,7 @@ bool addNewItem(char cpf[]) {
     read_line(email, 60);
 
     addNewData_dlist(*cpf);
-    list_add(name, address, *cpf, phone, email);
+    list_add(name, address, cpf, phone, email);
 
     return true;
   }

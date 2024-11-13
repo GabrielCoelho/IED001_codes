@@ -1,6 +1,10 @@
 // Copyright (c) 2024 Gabriel Coelho Soares. All Rights Reserved.
 #ifndef CONFIG_H
 #define CONFIG_H
+#include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
+#include <strings.h>
 
 #include "btree.h"
 #include "linkedList.h"

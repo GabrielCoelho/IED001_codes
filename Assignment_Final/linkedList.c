@@ -26,7 +26,7 @@ struct Ordering *newData(char data) {
   return newNode;
 }
 
-void addNewData(char data) {
+void addNewData_dlist(char data) {
   newPointer_dlist = newData(data);
 
   // If my start is NULL, the list is empty, so I just start the list by adding
@@ -81,7 +81,7 @@ void addInTheMiddle() {
   aux_dlist->prev = newPointer_dlist;
 }
 
-void initialize() {
+void initialize_dlist() {
   start_dlist = NULL;
   end_dlist = NULL;
 }

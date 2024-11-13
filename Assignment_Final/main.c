@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <strings.h>
 
-#include "./config.h"
+#include "config.h"
 
 enum {
   OPT_DESSELECT,
@@ -20,7 +20,6 @@ int menu();
 
 int main(int argc, char *argv[]) {
   initializer();
-  struct Database removed_from_list;
   char name[40], address[100], email[60], phone[14], cpf[12];
   int aux;
   int op = 0;
