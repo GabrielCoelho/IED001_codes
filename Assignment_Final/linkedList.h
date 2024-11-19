@@ -102,4 +102,6 @@ bool toNext();
 bool toPrevious();
 
 bool getCurrent(char *ext_data);
+
+void showFirstToLast();
 #endif  // !LINKEDLIST_H

@@ -7,6 +7,8 @@
 #include <string.h>
 #include <strings.h>
 
+#include "config.h"
+
 // int list_pointer[HIGHEST];
 
 int HIGHEST = 5;

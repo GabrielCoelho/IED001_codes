@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "config.h"
+
 struct Ordering *start_dlist = NULL;
 struct Ordering *end_dlist = NULL;
 struct Ordering *newPointer_dlist = NULL;
@@ -21,6 +23,7 @@ struct Ordering *newData(char data) {
   }
 
   newNode->prev = NULL;
+  newNode->register_number = regi;
   strcpy(newNode->name, &data);
   newNode->next = NULL;
   return newNode;
@@ -120,10 +123,21 @@ bool toPrevious() {
   return true;
 }
 
-bool getcurrent_dlist(char *ext_data) {
+bool getcurrent_dlist(char ext_data) {
   if (current_dlist != NULL) {
-    strcpy(ext_data, current_dlist->name);
+    strcpy(&ext_data, current_dlist->name);
     return true;
   }
   return false;
+}
+
+void showFirstToLast() {
+  char data[100];
+  toBeginning();
+  do {
+    if (getcurrent_dlist(*data)) {
+      printf("%s\n", data);
+    }
+  } while (toNext());
+  printf("\n ");
 }

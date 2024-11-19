@@ -5,6 +5,7 @@
 #include <strings.h>
 
 #include "config.h"
+#include "linkedList.h"
 
 enum {
   OPT_DESSELECT,
@@ -56,6 +57,7 @@ int main(int argc, char *argv[]) {
         }
         break;
       case OPT_REPORT:
+        showFirstToLast();
         break;
       case OPT_EXIT:
         break;

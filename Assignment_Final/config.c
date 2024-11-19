@@ -8,6 +8,7 @@
 #include <strings.h>
 
 #include "btree.h"
+#include "linkedList.h"
 #include "list.h"
 
 int regi = 0;
@@ -16,6 +17,13 @@ void initializer() {
   initialize_btree();
   initialize_dlist();
   initialize_list();
+}
+
+void terminatorAll() {
+  // imprimir no arquivo @TODO
+  finalize_btree(btree_start);
+  terminator_dlist(start_dlist);
+  free(list_pointer);
 }
 
 void read_line(char *input_buffer, int length) {

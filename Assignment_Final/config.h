@@ -13,6 +13,7 @@
 extern int regi;
 
 void initializer();
+void terminatorAll();
 void read_line(char *input_buffer, int length);
 bool addNewItem(char cpf[]);
 bool search_cpf(char cpf[]);
