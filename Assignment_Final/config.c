@@ -8,6 +8,7 @@
 #include <strings.h>
 
 #include "btree.h"
+#include "list.h"
 
 int regi = 0;
 
@@ -54,7 +55,7 @@ bool addNewItem(char cpf[]) {
 
 bool search_cpf(char cpf[]) {
   if (localize_btree(cpf, btree_start) != NULL) {
-    printf("Found\n");
+    list_search_value(cpf);
     return true;
   }
 

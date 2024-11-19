@@ -32,7 +32,6 @@ struct PKey *localize_btree(char cpf_searched[], struct PKey *where) {
   }
 
   if (strcmp(cpf_searched, where->cpf) == 0) {
-    printf("found!");
     return where;
   } else {
     btree_prev = where;

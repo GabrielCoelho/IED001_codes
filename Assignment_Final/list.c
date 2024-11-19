@@ -92,7 +92,9 @@ int list_search_value(char *data_cpf) {
   if (!is_empty) {
     for (int i = 0; i < reference; i++) {
       if (strcmp(list_pointer[i].cpf, data_cpf) == 0) {
-        printf("Element: %s\nIndex: %d\n\n", list_pointer[i].cpf, i + 1);
+        printf("Name: %s\nAddress: %s\nPhone: %s\nEmail: %s\n\n",
+               list_pointer[i].name, list_pointer[i].address,
+               list_pointer[i].phone_number, list_pointer[i].email);
         return i;
       }
     }
