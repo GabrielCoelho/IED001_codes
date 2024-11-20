@@ -54,7 +54,7 @@ bool addNewItem(char cpf[]) {
     printf("Email: ");
     read_line(email, 60);
 
-    addNewData_dlist(*cpf);
+    addNewData_dlist(name);
     list_add(name, address, cpf, phone, email);
 
     return true;

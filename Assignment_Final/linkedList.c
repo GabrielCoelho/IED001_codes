@@ -15,7 +15,7 @@ struct Ordering *aux_dlist = NULL;
 struct Ordering *prev_dlist = NULL;
 struct Ordering *current_dlist = NULL;
 
-struct Ordering *newData(char data) {
+struct Ordering *newData(char *data) {
   struct Ordering *newNode = malloc(sizeof(struct Ordering));
   if (!newNode) {
     printf("Couldn't allocate any memory\nExiting...\n ");
@@ -24,12 +24,12 @@ struct Ordering *newData(char data) {
 
   newNode->prev = NULL;
   newNode->register_number = regi;
-  strcpy(newNode->name, &data);
+  snprintf(newNode->name, sizeof(newNode->name), "%s", data);
   newNode->next = NULL;
   return newNode;
 }
 
-void addNewData_dlist(char data) {
+void addNewData_dlist(char *data) {
   newPointer_dlist = newData(data);
 
   // If my start is NULL, the list is empty, so I just start the list by adding
@@ -123,20 +123,20 @@ bool toPrevious() {
   return true;
 }
 
-bool getcurrent_dlist(char ext_data) {
+bool getcurrent_dlist(char *ext_data) {
   if (current_dlist != NULL) {
-    strcpy(&ext_data, current_dlist->name);
+    printf("%s", current_dlist->name);
     return true;
   }
   return false;
 }
 
 void showFirstToLast() {
-  char data[100];
+  char data;
   toBeginning();
   do {
-    if (getcurrent_dlist(*data)) {
-      printf("%s\n", data);
+    if (getcurrent_dlist(&data)) {
+      printf("\n");
     }
   } while (toNext());
   printf("\n ");
