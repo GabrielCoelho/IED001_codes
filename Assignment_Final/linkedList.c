@@ -89,12 +89,12 @@ void initialize_dlist() {
   end_dlist = NULL;
 }
 
-void terminator(struct Ordering *who) {
+void terminator_dlist(struct Ordering *who) {
   if (who == NULL) {
     return;
   }
   if (who->next != NULL) {
-    terminator(who->next);
+    terminator_dlist(who->next);
   }
   free(who);
 }

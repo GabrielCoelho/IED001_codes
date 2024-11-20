@@ -20,6 +20,8 @@ enum {
 int menu();
 
 int main(int argc, char *argv[]) {
+  system("clear");
+  printf("\t### Clinique X - Medical Data Center ###\n\n");
   initializer();
   char name[40], address[100], email[60], phone[14], cpf[12];
   int aux;
