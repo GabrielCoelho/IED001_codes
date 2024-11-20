@@ -87,3 +87,11 @@ bool exclude_item(char *cpf) {
   }
   return false;
 }
+
+bool setNewData(char *cpf) {
+  if (localize_btree(cpf, btree_start) != NULL) {
+    list_set(list_search_value(cpf));
+  }
+
+  return false;
+}

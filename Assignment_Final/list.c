@@ -7,7 +7,9 @@
 #include <string.h>
 #include <strings.h>
 
+#include "btree.h"
 #include "config.h"
+#include "linkedList.h"
 
 // int list_pointer[HIGHEST];
 
@@ -113,14 +115,12 @@ void list_set(int index) {
   read_line(name, 39);
   name[strcspn(name, "\n")] = '\0';
   if (strlen(name) > 0) {
+    cpf = localize_btree_int(list_pointer[index].cpf, btree_start);
+    if (cpf != -1) {
+      removeItem(cpf);
+      addNewData_dlist(name);
+    }
     strcpy(list_pointer[index].name, name);
-  }
-
-  printf("CPF: %s\n", list_pointer[index].cpf);
-  read_line(check_cpf, 12);
-  check_cpf[strcspn(check_cpf, "\n")] = '\0';
-  if (strlen(check_cpf) > 0) {
-    strcpy(list_pointer[index].cpf, check_cpf);
   }
   printf("Address: %s\nInsert a new value or just press enter: ",
          list_pointer[index].address);

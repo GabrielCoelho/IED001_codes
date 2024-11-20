@@ -121,7 +121,7 @@ void removeData_btree(char cpf[]) {
 
 int localize_btree_int(char cpf_searched[], struct PKey *where) {
   if (btree_start == NULL) {
-    return NULL;
+    return -1;
   }
 
   if (strcmp(cpf_searched, where->cpf) == 0) {
@@ -130,13 +130,13 @@ int localize_btree_int(char cpf_searched[], struct PKey *where) {
     btree_prev = where;
     if (strcmp(cpf_searched, where->cpf) > 0) {
       if (where->right == NULL) {
-        return NULL;
+        return -1;
       } else {
         return localize_btree_int(cpf_searched, where->right);
       }
     } else if (strcmp(cpf_searched, where->cpf) < 0) {
       if (where->left == NULL) {
-        return NULL;
+        return -1;
       } else {
         return localize_btree_int(cpf_searched, where->left);
       }
