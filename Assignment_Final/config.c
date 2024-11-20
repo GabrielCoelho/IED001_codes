@@ -17,6 +17,7 @@ void initializer() {
   initialize_btree();
   initialize_dlist();
   initialize_list();
+  // puxar informações do arquivo @TODO
 }
 
 void terminatorAll() {
