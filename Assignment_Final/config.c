@@ -75,9 +75,8 @@ bool exclude_item(char *cpf) {
   int returned_regi = 0;
   if (localize_btree(cpf, btree_start) != NULL) {
     returned_regi = localize_btree_int(cpf, btree_start);
-    removeData_btree(cpf);
     if (returned_regi != -1) {
-      printf("%d", returned_regi);
+      removeData_btree(cpf);
       removeItem(returned_regi);
     } else {
       printf("Could'nt exclude properly\n\nExiting...\n");
