@@ -118,3 +118,30 @@ void removeData_btree(char cpf[]) {
   }
   free(btree_aux);
 }
+
+int localize_btree_int(char cpf_searched[], struct PKey *where) {
+  if (btree_start == NULL) {
+    return NULL;
+  }
+
+  if (strcmp(cpf_searched, where->cpf) == 0) {
+    return where->register_number;
+  } else {
+    btree_prev = where;
+    if (strcmp(cpf_searched, where->cpf) > 0) {
+      if (where->right == NULL) {
+        return NULL;
+      } else {
+        return localize_btree_int(cpf_searched, where->right);
+      }
+    } else if (strcmp(cpf_searched, where->cpf) < 0) {
+      if (where->left == NULL) {
+        return NULL;
+      } else {
+        return localize_btree_int(cpf_searched, where->left);
+      }
+    }
+  }
+
+  return -1;
+}

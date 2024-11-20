@@ -40,6 +40,7 @@ int main(int argc, char *argv[]) {
       case OPT_REMOVE:
         printf("Which CPF that was added you want to exclude?\nCPF: ");
         read_line(cpf, 12);
+        exclude_item(cpf);
         break;
       case OPT_SET:
         printf("Insert below the CPF to update the data\nCPF: ");

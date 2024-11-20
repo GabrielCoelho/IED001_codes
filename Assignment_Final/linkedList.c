@@ -84,6 +84,54 @@ void addInTheMiddle() {
   aux_dlist->prev = newPointer_dlist;
 }
 
+void removeItem(int data) {
+  if (start_dlist == NULL) {
+    return;
+  }
+  if (start_dlist->register_number == data) {
+    removeAtStart();
+  } else {
+    aux_dlist = start_dlist;
+    prev_dlist = start_dlist;
+    while (aux_dlist->register_number != data && aux_dlist->next != NULL) {
+      prev_dlist = aux_dlist;
+      aux_dlist = aux_dlist->next;
+    }
+    if (aux_dlist->register_number == data) {
+      if (aux_dlist->next == NULL) {
+        removeAtEnd();
+      } else {
+        removeInTheMiddle();
+      }
+    }
+  }
+}
+
+void removeAtStart() {
+  if (start_dlist->next == NULL && start_dlist->prev == NULL) {
+    free(start_dlist);
+    start_dlist = NULL;
+    end_dlist = NULL;
+  } else {
+    aux_dlist = start_dlist;
+    start_dlist = start_dlist->next;
+    start_dlist->prev = NULL;
+    free(aux_dlist);
+  }
+}
+
+void removeAtEnd() {
+  prev_dlist->next = NULL;
+  free(end_dlist);
+  end_dlist = prev_dlist;
+}
+
+void removeInTheMiddle() {
+  prev_dlist->next = aux_dlist->next;
+  aux_dlist->next->prev = prev_dlist;
+  free(aux_dlist);
+}
+
 void initialize_dlist() {
   start_dlist = NULL;
   end_dlist = NULL;

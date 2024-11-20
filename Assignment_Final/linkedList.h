@@ -63,7 +63,7 @@ void addInTheMiddle();
  * opposite of addNewData, this function is also a parent of this other three
  * functions, to remove at the begining, at the end and in between the middle.
  * @params data -> an integer value*/
-void removeItem(char data);
+void removeItem(int data);
 
 /**
  * Remove the first item

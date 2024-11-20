@@ -25,5 +25,6 @@ struct PKey *localize_btree(char cpf_searched[], struct PKey *where);
 struct PKey *newData_btree(char cpf[]);
 void addNewData_btree(struct PKey *who, struct PKey *where);
 void removeData_btree(char cpf[]);
+int localize_btree_int(char cpf_searched[], struct PKey *where);
 
 #endif  // BTREE_H!
