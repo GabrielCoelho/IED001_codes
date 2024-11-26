@@ -164,8 +164,6 @@ Cada item realiza o que sua descrição diz, a saber:
 5. "Give a Report" -> Imprime o relatório na tela e num arquivo com o nome de cada médico cadastrado.
 6. "Exit" -> Termina o programa.
 
-%% @TODO Incrementar a partir do término da programação %%
-
 # Tecnologias utilizadas
 
 - Git
@@ -175,16 +173,6 @@ Cada item realiza o que sua descrição diz, a saber:
 
 # Problemas e soluções
 
-%% @TODO proxima sprint %%
-
-```bash
-confirmar problemas e soluções no desenvolvimento
-```
+Durante o desenvolvimento não foram encontrados muitos impedimentos que causassem precupações, apenas um pequeno atraso na funcionalidade de consistência e permanência de dados. O sistema cumpre com exatidão o que foi proposto pela equipe de desenvolvimento em cada sprint. Todas as funcionalidades pensadas são executadas perfeitamente no ambiente ao qual o sistema foi determinado.
 
 # Conclusão
-
-%% @TODO proxima sprint %%
-
-````bash
-percepções do grupo sobre o trabalho realizado e propostas de melhorias e soluções 
-````
