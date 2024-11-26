@@ -45,11 +45,11 @@ bool addNewItem(char cpf[]) {
   if (localize_btree(cpf, btree_start) == NULL || btree_start == NULL) {
     regi = regi + 1;
     addNewData_btree(newData_btree(cpf), btree_start);
-    printf("Name: ");
+    printf("Nome: ");
     read_line(name, 40);
-    printf("Address: ");
+    printf("Endereço: ");
     read_line(address, 100);
-    printf("Phone Number: ");
+    printf("Telefone: ");
     read_line(phone, 14);
     printf("Email: ");
     read_line(email, 60);
@@ -79,7 +79,7 @@ bool exclude_item(char *cpf) {
       removeData_btree(cpf);
       removeItem(returned_regi);
     } else {
-      printf("Could'nt exclude properly\n\nExiting...\n");
+      printf("Não pode excluir própriamente... \n\nSaindo...\n");
       terminatorAll();
       return EXIT_FAILURE;
     }
@@ -95,3 +95,5 @@ bool setNewData(char *cpf) {
 
   return false;
 }
+
+void get_data_file() {}

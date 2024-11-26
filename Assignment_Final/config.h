@@ -19,4 +19,6 @@ bool addNewItem(char cpf[]);
 bool search_cpf(char cpf[]);
 bool exclude_item(char *cpf);
 
+void get_data_file();
+
 #endif  // !CONFIG_H
