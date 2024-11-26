@@ -73,12 +73,12 @@ int main(int argc, char *argv[]) {
 
 int menu() {
   int option = 0;
-  printf("\nChoose an option:\n");
-  printf("%d - Add a Data\n", OPT_ADD);
-  printf("%d - Update a Data value\n", OPT_SET);
-  printf("%d - Remove a Data\n", OPT_REMOVE);
-  printf("%d - Search a Data\n", OPT_SEARCH);
-  printf("%d - Give a Report\n", OPT_REPORT);
+  printf("\nEscolha uma opção:\n");
+  printf("%d - Adicionar um dado\n", OPT_ADD);
+  printf("%d - Atualizar um Dado\n", OPT_SET);
+  printf("%d - Remover um Dado\n", OPT_REMOVE);
+  printf("%d - Procurar um Dado\n", OPT_SEARCH);
+  printf("%d - Mostrar um Relatório\n", OPT_REPORT);
   printf("%d - Exit\n", OPT_EXIT);
   scanf("%d", &option);
   return option;
