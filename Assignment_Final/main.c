@@ -31,34 +31,34 @@ int main(int argc, char *argv[]) {
     scanf("%*c");
     switch (op) {
       case OPT_ADD:
-        printf("Insert the value of the data below\nCPF: ");
+        printf("Insira o valor dos dados abaixo\nCPF: ");
         read_line(cpf, 12);
         if (!addNewItem(cpf)) {
-          printf("CPF already registered\n");
+          printf("CPF já registrado\n");
         }
         break;
       case OPT_REMOVE:
-        printf("Which CPF that was added you want to exclude?\nCPF: ");
+        printf("Qual registro CPF você quer excluir?\nCPF: ");
         read_line(cpf, 12);
         if (!exclude_item(cpf)) {
-          printf("CPF wasn't found");
+          printf("CPF não encontrado\n");
         }
         break;
       case OPT_SET:
-        printf("Insert below the CPF to update the data\nCPF: ");
+        printf("Insira o Registro CPF que você quer atualizar os dados\nCPF: ");
         read_line(cpf, 12);
         aux = list_search_value(cpf);
         if (aux != -1) {
           list_set(aux);
         } else {
-          printf("CPF wasn't found\n");
+          printf("CPF não encontrado\n");
         }
         break;
       case OPT_SEARCH:
         printf("\nCPF: ");
         read_line(cpf, 12);
         if (!search_cpf(cpf)) {
-          printf("CPF Not found");
+          printf("CPF não encontrado");
         }
         break;
       case OPT_REPORT:
