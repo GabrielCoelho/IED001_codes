@@ -28,7 +28,7 @@ bool initialize_list() {
 
 bool check_doops_cpf(char cpf) {
   for (int i = 0; i < reference; i++) {
-    printf("%s\n%s\n", list_pointer[i].cpf, &cpf);
+    /*printf("%s\n%s\n", list_pointer[i].cpf, &cpf);*/
     if (strcmp(list_pointer[i].cpf, &cpf) == 0) {
       return false;
     }
