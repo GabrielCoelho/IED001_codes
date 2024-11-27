@@ -182,3 +182,9 @@ Cada item realiza o que sua descrição diz, a saber:
 Durante o desenvolvimento não foram encontrados muitos impedimentos que causassem precupações, apenas um pequeno atraso na funcionalidade de consistência e permanência de dados. O sistema cumpre com exatidão o que foi proposto pela equipe de desenvolvimento em cada sprint. Todas as funcionalidades pensadas são executadas perfeitamente no ambiente ao qual o sistema foi determinado.
 
 # Conclusão
+
+O desenvolvimento da plataforma de banco de dados centralizada para o gerenciamento de informações médicas atingiu todos os objetivos propostos de maneira eficaz. A solução apresenta uma interface intuitiva e funcionalidades robustas que permitem o cadastro, consulta, atualização e remoção de dados, além de gerar relatórios de forma ágil e confiável.
+
+Os fluxos de uso foram planejados para minimizar erros e garantir uma experiência satisfatória ao usuário, enquanto a base técnica foi estruturada para possibilitar futuras expansões e adaptações às demandas do mercado.
+
+Com a aplicação das tecnologias propostas e a superação dos desafios encontrados, o sistema demonstra ser uma ferramenta valiosa para centralizar e gerenciar dados de profissionais da área da saúde, promovendo agilidade e confiabilidade no acesso às informações. Este projeto estabelece uma base sólida para futuras melhorias e expansão, contribuindo significativamente para a gestão eficiente no setor médico.
