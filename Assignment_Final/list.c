@@ -7,6 +7,10 @@
 #include <string.h>
 #include <strings.h>
 
+#include "btree.h"
+#include "config.h"
+#include "linkedList.h"
+
 // int list_pointer[HIGHEST];
 
 int HIGHEST = 5;
@@ -24,7 +28,7 @@ bool initialize_list() {
 
 bool check_doops_cpf(char cpf) {
   for (int i = 0; i < reference; i++) {
-    printf("%s\n%s\n", list_pointer[i].cpf, &cpf);
+    /*printf("%s\n%s\n", list_pointer[i].cpf, &cpf);*/
     if (strcmp(list_pointer[i].cpf, &cpf) == 0) {
       return false;
     }
@@ -92,7 +96,9 @@ int list_search_value(char *data_cpf) {
   if (!is_empty) {
     for (int i = 0; i < reference; i++) {
       if (strcmp(list_pointer[i].cpf, data_cpf) == 0) {
-        printf("Element: %s\nIndex: %d\n\n", list_pointer[i].cpf, i + 1);
+        printf("Name: %s\nAddress: %s\nPhone: %s\nEmail: %s\n\n",
+               list_pointer[i].name, list_pointer[i].address,
+               list_pointer[i].phone_number, list_pointer[i].email);
         return i;
       }
     }
@@ -109,14 +115,12 @@ void list_set(int index) {
   read_line(name, 39);
   name[strcspn(name, "\n")] = '\0';
   if (strlen(name) > 0) {
+    cpf = localize_btree_int(list_pointer[index].cpf, btree_start);
+    if (cpf != -1) {
+      removeItem(cpf);
+      addNewData_dlist(name);
+    }
     strcpy(list_pointer[index].name, name);
-  }
-
-  printf("CPF: %s\n", list_pointer[index].cpf);
-  read_line(check_cpf, 12);
-  check_cpf[strcspn(check_cpf, "\n")] = '\0';
-  if (strlen(check_cpf) > 0) {
-    strcpy(list_pointer[index].cpf, check_cpf);
   }
   printf("Address: %s\nInsert a new value or just press enter: ",
          list_pointer[index].address);

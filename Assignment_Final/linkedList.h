@@ -26,7 +26,7 @@ extern struct Ordering *current_dlist;
  * it. Then it returns this pointer
  * @params data -> an integer value
  * @return pointer to a LinkedList Struct*/
-struct Ordering *newData_dlist(char name);
+struct Ordering *newData_dlist(char *data);
 
 /**
  * Add new Data
@@ -34,7 +34,7 @@ struct Ordering *newData_dlist(char name);
  * created. Since the list is always ascendent sorted, this function checks
  * where to put the new value, and calls for other three functions.
  * @params data -> an integer value*/
-void addNewData_dlist(char name);
+void addNewData_dlist(char *data);
 
 /**
  * Add the data at the begining of the list
@@ -63,7 +63,7 @@ void addInTheMiddle();
  * opposite of addNewData, this function is also a parent of this other three
  * functions, to remove at the begining, at the end and in between the middle.
  * @params data -> an integer value*/
-void removeItem(char data);
+void removeItem(int data);
 
 /**
  * Remove the first item
@@ -102,4 +102,6 @@ bool toNext();
 bool toPrevious();
 
 bool getCurrent(char *ext_data);
+
+void showFirstToLast();
 #endif  // !LINKEDLIST_H

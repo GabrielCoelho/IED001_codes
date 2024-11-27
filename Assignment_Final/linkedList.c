@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "config.h"
+
 struct Ordering *start_dlist = NULL;
 struct Ordering *end_dlist = NULL;
 struct Ordering *newPointer_dlist = NULL;
@@ -13,7 +15,7 @@ struct Ordering *aux_dlist = NULL;
 struct Ordering *prev_dlist = NULL;
 struct Ordering *current_dlist = NULL;
 
-struct Ordering *newData(char data) {
+struct Ordering *newData(char *data) {
   struct Ordering *newNode = malloc(sizeof(struct Ordering));
   if (!newNode) {
     printf("Couldn't allocate any memory\nExiting...\n ");
@@ -21,12 +23,13 @@ struct Ordering *newData(char data) {
   }
 
   newNode->prev = NULL;
-  strcpy(newNode->name, &data);
+  newNode->register_number = regi;
+  snprintf(newNode->name, sizeof(newNode->name), "%s", data);
   newNode->next = NULL;
   return newNode;
 }
 
-void addNewData_dlist(char data) {
+void addNewData_dlist(char *data) {
   newPointer_dlist = newData(data);
 
   // If my start is NULL, the list is empty, so I just start the list by adding
@@ -81,17 +84,65 @@ void addInTheMiddle() {
   aux_dlist->prev = newPointer_dlist;
 }
 
+void removeItem(int data) {
+  if (start_dlist == NULL) {
+    return;
+  }
+  if (start_dlist->register_number == data) {
+    removeAtStart();
+  } else {
+    aux_dlist = start_dlist;
+    prev_dlist = start_dlist;
+    while (aux_dlist->register_number != data && aux_dlist->next != NULL) {
+      prev_dlist = aux_dlist;
+      aux_dlist = aux_dlist->next;
+    }
+    if (aux_dlist->register_number == data) {
+      if (aux_dlist->next == NULL) {
+        removeAtEnd();
+      } else {
+        removeInTheMiddle();
+      }
+    }
+  }
+}
+
+void removeAtStart() {
+  if (start_dlist->next == NULL && start_dlist->prev == NULL) {
+    free(start_dlist);
+    start_dlist = NULL;
+    end_dlist = NULL;
+  } else {
+    aux_dlist = start_dlist;
+    start_dlist = start_dlist->next;
+    start_dlist->prev = NULL;
+    free(aux_dlist);
+  }
+}
+
+void removeAtEnd() {
+  prev_dlist->next = NULL;
+  free(end_dlist);
+  end_dlist = prev_dlist;
+}
+
+void removeInTheMiddle() {
+  prev_dlist->next = aux_dlist->next;
+  aux_dlist->next->prev = prev_dlist;
+  free(aux_dlist);
+}
+
 void initialize_dlist() {
   start_dlist = NULL;
   end_dlist = NULL;
 }
 
-void terminator(struct Ordering *who) {
+void terminator_dlist(struct Ordering *who) {
   if (who == NULL) {
     return;
   }
   if (who->next != NULL) {
-    terminator(who->next);
+    terminator_dlist(who->next);
   }
   free(who);
 }
@@ -122,8 +173,19 @@ bool toPrevious() {
 
 bool getcurrent_dlist(char *ext_data) {
   if (current_dlist != NULL) {
-    strcpy(ext_data, current_dlist->name);
+    printf("%s", current_dlist->name);
     return true;
   }
   return false;
+}
+
+void showFirstToLast() {
+  char data;
+  toBeginning();
+  do {
+    if (getcurrent_dlist(&data)) {
+      printf("\n");
+    }
+  } while (toNext());
+  printf("\n ");
 }
