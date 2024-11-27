@@ -164,6 +164,12 @@ Cada item realiza o que sua descrição diz, a saber:
 5. "Give a Report" -> Imprime o relatório na tela e num arquivo com o nome de cada médico cadastrado.
 6. "Exit" -> Termina o programa.
 
+**Abaixo estarão algumas imagens mostrando um breve fluxo de uso da aplicação**
+
+![imagemMenu](img/guide/02.png)
+![imagemMenu](img/guide/03.png)
+![imagemMenu](img/guide/04.png)
+
 # Tecnologias utilizadas
 
 - Git
